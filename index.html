@@ -247,7 +247,6 @@ function confirmLogin() {
 function readBook() {
   alert("زر القراءة يعمل. سنربطه بملف الكتاب لاحقًا.");
 }
-
 async function downloadBook() {
   if (!loggedIn) {
     if (isArabic) {
@@ -257,6 +256,29 @@ async function downloadBook() {
     }
     return;
   }
+
+  try {
+    const { data, error } = await sb
+      .storage
+      .from("books")
+      .createSignedUrl("hadaiq.pdf", 300);
+
+    if (error) {
+      if (isArabic) {
+        alert("تعذر فتح الكتاب. تأكد من صلاحيات Supabase.");
+      } else {
+        alert("Could not open the book. Check Supabase permissions.");
+      }
+      console.error(error);
+      return;
+    }
+
+    window.open(data.signedUrl, "_blank");
+  } catch (e) {
+    console.error(e);
+    alert("حدث خطأ أثناء محاولة التحميل.");
+  }
+}
 
   try {
     const { data, error } = await sb

@@ -63,22 +63,22 @@ button {
 
 <header>
   <h1 id="siteTitle">مكتبة الياسري الإلكترونية الرقمية</h1>
-  <p>البصرة، العراق</p>
+  <p id="siteLocation">البصرة، العراق</p>
 </header>
 
-<button onclick="changeLanguage()">English</button>
+<button onclick="changeLanguage()" id="langBtn">English</button>
 <button onclick="login()" id="loginBtn">تسجيل الدخول</button>
 
 <div class="book">
   <h2 id="bookTitle">الحدائق للاندلسي</h2>
   <p id="bookDesc">كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.</p>
-  <button onclick="readBook()">قراءة الكتاب</button>
-  <button onclick="downloadBook()">تحميل الكتاب</button>
+  <button onclick="readBook()" id="readBtn">قراءة الكتاب</button>
+  <button onclick="downloadBook()" id="downloadBtn">تحميل الكتاب</button>
 </div>
 
 <p id="status">لم تسجل الدخول بعد.</p>
 
-<p>
+<p id="contact">
 الهاتف / واتساب: 07705677595<br>
 البريد الإلكتروني: ss65ri@gmail.com
 </p>
@@ -91,41 +91,88 @@ function changeLanguage() {
   isArabic = !isArabic;
 
   const title = document.getElementById("siteTitle");
+  const location = document.getElementById("siteLocation");
+  const langBtn = document.getElementById("langBtn");
+  const loginBtn = document.getElementById("loginBtn");
   const bookTitle = document.getElementById("bookTitle");
   const bookDesc = document.getElementById("bookDesc");
-  const loginBtn = document.getElementById("loginBtn");
+  const readBtn = document.getElementById("readBtn");
+  const downloadBtn = document.getElementById("downloadBtn");
+  const status = document.getElementById("status");
+  const contact = document.getElementById("contact");
 
   if (isArabic) {
     document.documentElement.dir = "rtl";
+    document.documentElement.lang = "ar";
+
     title.textContent = "مكتبة الياسري الإلكترونية الرقمية";
+    location.textContent = "البصرة، العراق";
+    langBtn.textContent = "English";
     bookTitle.textContent = "الحدائق للاندلسي";
     bookDesc.textContent = "كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.";
-    loginBtn.textContent = "تسجيل الدخول";
+    readBtn.textContent = "قراءة الكتاب";
+    downloadBtn.textContent = "تحميل الكتاب";
+    contact.innerHTML = "الهاتف / واتساب: 07705677595<br>البريد الإلكتروني: ss65ri@gmail.com";
+
+    if (loggedIn) {
+      loginBtn.textContent = "تسجيل الخروج";
+      status.textContent = "تم تسجيل الدخول بنجاح.";
+    } else {
+      loginBtn.textContent = "تسجيل الدخول";
+      status.textContent = "لم تسجل الدخول بعد.";
+    }
   } else {
     document.documentElement.dir = "ltr";
+    document.documentElement.lang = "en";
+
     title.textContent = "Al-Yasari Digital Electronic Library";
+    location.textContent = "Basra, Iraq";
+    langBtn.textContent = "العربية";
     bookTitle.textContent = "Al-Hadaeq by Al-Andalusi";
     bookDesc.textContent = "A Shia scholarly book available for reading. Download is available for registered users only.";
-    loginBtn.textContent = "Log in";
+    readBtn.textContent = "Read book";
+    downloadBtn.textContent = "Download book";
+    contact.innerHTML = "Phone / WhatsApp: 07705677595<br>Email: ss65ri@gmail.com";
+
+    if (loggedIn) {
+      loginBtn.textContent = "Log out";
+      status.textContent = "You are logged in.";
+    } else {
+      loginBtn.textContent = "Log in";
+      status.textContent = "You are not logged in yet.";
+    }
   }
 }
 
 function login() {
   if (loggedIn) {
     loggedIn = false;
-    document.getElementById("status").textContent = "تم تسجيل الخروج.";
-    document.getElementById("loginBtn").textContent = "تسجيل الدخول";
+
+    if (isArabic) {
+      document.getElementById("status").textContent = "تم تسجيل الخروج.";
+      document.getElementById("loginBtn").textContent = "تسجيل الدخول";
+    } else {
+      document.getElementById("status").textContent = "You have logged out.";
+      document.getElementById("loginBtn").textContent = "Log in";
+    }
+
     return;
   }
 
-  const email = prompt("أدخل بريدك الإلكتروني:");
+  const email = prompt("أدخل بريدك الإلكتروني / Enter your email:");
 
   if (email && email.includes("@")) {
     loggedIn = true;
-    document.getElementById("status").textContent = "تم تسجيل الدخول بنجاح.";
-    document.getElementById("loginBtn").textContent = "تسجيل الخروج";
+
+    if (isArabic) {
+      document.getElementById("status").textContent = "تم تسجيل الدخول بنجاح.";
+      document.getElementById("loginBtn").textContent = "تسجيل الخروج";
+    } else {
+      document.getElementById("status").textContent = "You are logged in.";
+      document.getElementById("loginBtn").textContent = "Log out";
+    }
   } else {
-    alert("الرجاء إدخال بريد إلكتروني صحيح.");
+    alert("الرجاء إدخال بريد إلكتروني صحيح. / Please enter a valid email.");
   }
 }
 
@@ -135,7 +182,7 @@ function readBook() {
 
 function downloadBook() {
   if (!loggedIn) {
-    alert("التحميل متاح للمسجلين فقط.");
+    alert("التحميل متاح للمسجلين فقط. / Download is available for registered users only.");
     return;
   }
 

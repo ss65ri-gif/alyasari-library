@@ -260,6 +260,10 @@ function downloadBook() {
     return;
   }
 
+  const downloadUrl = bookUrl + "?download=hadaiq.pdf";
+  window.open(downloadUrl, "_blank");
+}
+
   window.open(bookUrl, "_blank");
 }
 </script>

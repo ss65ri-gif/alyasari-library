@@ -56,6 +56,39 @@ button {
   font-weight: bold;
   color: #14532d;
 }
+
+#loginWindow {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.loginBox {
+  background: white;
+  max-width: 350px;
+  margin: 120px auto;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.loginBox h3 {
+  color: #14532d;
+  margin-top: 0;
+}
+
+.loginBox input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
 </style>
 </head>
 
@@ -67,7 +100,7 @@ button {
 </header>
 
 <button onclick="changeLanguage()" id="langBtn">English</button>
-<button onclick="login()" id="loginBtn">تسجيل الدخول</button>
+<button onclick="openLogin()" id="loginBtn">تسجيل الدخول</button>
 
 <div class="book">
   <h2 id="bookTitle">الحدائق للاندلسي</h2>
@@ -82,6 +115,16 @@ button {
 الهاتف / واتساب: 07705677595<br>
 البريد الإلكتروني: ss65ri@gmail.com
 </p>
+
+<div id="loginWindow">
+  <div class="loginBox">
+    <h3 id="loginTitle">تسجيل الدخول</h3>
+    <input type="email" id="emailInput" placeholder="أدخل بريدك الإلكتروني">
+    <br>
+    <button onclick="confirmLogin()" id="confirmBtn">تأكيد</button>
+    <button onclick="closeLogin()" id="cancelBtn">إلغاء</button>
+  </div>
+</div>
 
 <script>
 let loggedIn = false;
@@ -100,6 +143,10 @@ function changeLanguage() {
   const downloadBtn = document.getElementById("downloadBtn");
   const status = document.getElementById("status");
   const contact = document.getElementById("contact");
+  const loginTitle = document.getElementById("loginTitle");
+  const emailInput = document.getElementById("emailInput");
+  const confirmBtn = document.getElementById("confirmBtn");
+  const cancelBtn = document.getElementById("cancelBtn");
 
   if (isArabic) {
     document.documentElement.dir = "rtl";
@@ -113,6 +160,10 @@ function changeLanguage() {
     readBtn.textContent = "قراءة الكتاب";
     downloadBtn.textContent = "تحميل الكتاب";
     contact.innerHTML = "الهاتف / واتساب: 07705677595<br>البريد الإلكتروني: ss65ri@gmail.com";
+    loginTitle.textContent = "تسجيل الدخول";
+    emailInput.placeholder = "أدخل بريدك الإلكتروني";
+    confirmBtn.textContent = "تأكيد";
+    cancelBtn.textContent = "إلغاء";
 
     if (loggedIn) {
       loginBtn.textContent = "تسجيل الخروج";
@@ -133,6 +184,10 @@ function changeLanguage() {
     readBtn.textContent = "Read book";
     downloadBtn.textContent = "Download book";
     contact.innerHTML = "Phone / WhatsApp: 07705677595<br>Email: ss65ri@gmail.com";
+    loginTitle.textContent = "Log in";
+    emailInput.placeholder = "Enter your email";
+    confirmBtn.textContent = "Confirm";
+    cancelBtn.textContent = "Cancel";
 
     if (loggedIn) {
       loginBtn.textContent = "Log out";
@@ -144,7 +199,7 @@ function changeLanguage() {
   }
 }
 
-function login() {
+function openLogin() {
   if (loggedIn) {
     loggedIn = false;
 
@@ -159,10 +214,19 @@ function login() {
     return;
   }
 
-  const email = prompt("أدخل بريدك الإلكتروني / Enter your email:");
+  document.getElementById("loginWindow").style.display = "block";
+}
+
+function closeLogin() {
+  document.getElementById("loginWindow").style.display = "none";
+}
+
+function confirmLogin() {
+  const email = document.getElementById("emailInput").value;
 
   if (email && email.includes("@")) {
     loggedIn = true;
+    closeLogin();
 
     if (isArabic) {
       document.getElementById("status").textContent = "تم تسجيل الدخول بنجاح.";
@@ -172,7 +236,11 @@ function login() {
       document.getElementById("loginBtn").textContent = "Log out";
     }
   } else {
-    alert("الرجاء إدخال بريد إلكتروني صحيح. / Please enter a valid email.");
+    if (isArabic) {
+      alert("الرجاء إدخال بريد إلكتروني صحيح.");
+    } else {
+      alert("Please enter a valid email.");
+    }
   }
 }
 
@@ -182,7 +250,12 @@ function readBook() {
 
 function downloadBook() {
   if (!loggedIn) {
-    alert("التحميل متاح للمسجلين فقط. / Download is available for registered users only.");
+    if (isArabic) {
+      alert("التحميل متاح للمسجلين فقط.");
+    } else {
+      alert("Download is available for registered users only.");
+    }
+
     return;
   }
 

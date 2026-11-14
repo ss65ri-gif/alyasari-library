@@ -1,148 +1,147 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مكتبة الياسري الإلكترونية الرقمية</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مكتبة الياسري الإلكترونية الرقمية</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f1e6;
-      color: #2b2b2b;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f1e6;
+  color: #2b2b2b;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
 
-    header {
-      background: #14532d;
-      color: #fff;
-      padding: 25px 10px;
-      border-radius: 12px;
-    }
+header {
+  background: #14532d;
+  color: white;
+  padding: 25px 10px;
+  border-radius: 12px;
+}
 
-    h1 {
-      margin: 0;
-      font-size: 26px;
-    }
+h1 {
+  margin: 0;
+  font-size: 26px;
+}
 
-    .buttons {
-      margin: 20px 0;
-    }
+button {
+  background: #14532d;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  margin: 6px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-    button {
-      background: #14532d;
-      color: #fff;
-      border: none;
-      padding: 12px 25px;
-      margin: 5px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+.book {
+  background: white;
+  border: 1px solid #d8d2c0;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+}
 
-    .book {
-      background: #fff;
-      border: 1px solid #d8d2c0;
-      border-radius: 12px;
-      padding: 20px;
-      max-width: 500px;
-      margin: 20px auto;
-    }
+.book h2 {
+  color: #14532d;
+  margin-top: 0;
+}
 
-    .book h2 {
-      margin-top: 0;
-      color: #14532d;
-    }
-
-    .status {
-      margin-top: 20px;
-      font-weight: bold;
-      color: #14532d;
-    }
-  </style>
+#status {
+  font-weight: bold;
+  color: #14532d;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>مكتبة الياسري الإلكترونية الرقمية</h1>
-    <p>البصرة، العراق</p>
-  </header>
+<header>
+  <h1 id="siteTitle">مكتبة الياسري الإلكترونية الرقمية</h1>
+  <p>البصرة، العراق</p>
+</header>
 
-  <div class="buttons">
-    <button onclick="changeLanguage()">English</button>
-    <button onclick="login()">تسجيل الدخول</button>
-  </div>
+<button onclick="changeLanguage()">English</button>
+<button onclick="login()" id="loginBtn">تسجيل الدخول</button>
 
-  <div class="book">
-    <h2>الحدائق للاندلسي</h2>
-    <p>كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.</p>
-    <button onclick="downloadBook()">تحميل الكتاب</button>
-  </div>
+<div class="book">
+  <h2 id="bookTitle">الحدائق للاندلسي</h2>
+  <p id="bookDesc">كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.</p>
+  <button onclick="readBook()">قراءة الكتاب</button>
+  <button onclick="downloadBook()">تحميل الكتاب</button>
+</div>
 
-  <p class="status" id="status">لم تسجل الدخول بعد.</p>
+<p id="status">لم تسجل الدخول بعد.</p>
 
-  <p>
-    الهاتف / واتساب: 07705677595<br>
-    البريد الإلكتروني: ss65ri@gmail.com
-  </p>
+<p>
+الهاتف / واتساب: 07705677595<br>
+البريد الإلكتروني: ss65ri@gmail.com
+</p>
 
-  <script>
-    let loggedIn = false;
-    let isArabic = true;
+<script>
+let loggedIn = false;
+let isArabic = true;
 
-    function changeLanguage() {
-      isArabic = !isArabic;
+function changeLanguage() {
+  isArabic = !isArabic;
 
-      if (isArabic) {
-        document.documentElement.dir = "rtl";
-        document.title = "مكتبة الياسري الإلكترونية الرقمية";
-        document.querySelector("h1").textContent = "مكتبة الياسري الإلكترونية الرقمية";
-        document.querySelector(".book h2").textContent = "الحدائق للاندلسي";
-        document.querySelector(".book p").textContent = "كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.";
-        document.querySelector(".buttons button:nth-child(2)").textContent = "تسجيل الدخول";
-        document.querySelector(".book button").textContent = "تحميل الكتاب";
-      } else {
-        document.documentElement.dir = "ltr";
-        document.title = "Al-Yasari Digital Electronic Library";
-        document.querySelector("h1").textContent = "Al-Yasari Digital Electronic Library";
-        document.querySelector(".book h2").textContent = "Al-Hadaeq by Al-Andalusi";
-        document.querySelector(".book p").textContent = "A Shia scholarly book available for reading. Download is available for registered users only.";
-        document.querySelector(".buttons button:nth-child(2)").textContent = "Log in";
-        document.querySelector(".book button").textContent = "Download book";
-      }
-    }
+  const title = document.getElementById("siteTitle");
+  const bookTitle = document.getElementById("bookTitle");
+  const bookDesc = document.getElementById("bookDesc");
+  const loginBtn = document.getElementById("loginBtn");
 
-    function login() {
-      if (loggedIn) {
-        loggedIn = false;
-        document.getElementById("status").textContent = "تم تسجيل الخروج.";
-        document.querySelector(".buttons button:nth-child(2)").textContent = "تسجيل الدخول";
-        return;
-      }
+  if (isArabic) {
+    document.documentElement.dir = "rtl";
+    title.textContent = "مكتبة الياسري الإلكترونية الرقمية";
+    bookTitle.textContent = "الحدائق للاندلسي";
+    bookDesc.textContent = "كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.";
+    loginBtn.textContent = "تسجيل الدخول";
+  } else {
+    document.documentElement.dir = "ltr";
+    title.textContent = "Al-Yasari Digital Electronic Library";
+    bookTitle.textContent = "Al-Hadaeq by Al-Andalusi";
+    bookDesc.textContent = "A Shia scholarly book available for reading. Download is available for registered users only.";
+    loginBtn.textContent = "Log in";
+  }
+}
 
-      const email = prompt("أدخل بريدك الإلكتروني:");
+function login() {
+  if (loggedIn) {
+    loggedIn = false;
+    document.getElementById("status").textContent = "تم تسجيل الخروج.";
+    document.getElementById("loginBtn").textContent = "تسجيل الدخول";
+    return;
+  }
 
-      if (email && email.includes("@")) {
-        loggedIn = true;
-        document.getElementById("status").textContent = "تم تسجيل الدخول بنجاح.";
-        document.querySelector(".buttons button:nth-child(2)").textContent = "تسجيل الخروج";
-      } else {
-        alert("الرجاء إدخال بريد إلكتروني صحيح.");
-      }
-    }
+  const email = prompt("أدخل بريدك الإلكتروني:");
 
-    function downloadBook() {
-      if (!loggedIn) {
-        alert("التحميل متاح للمسجلين فقط.");
-        return;
-      }
+  if (email && email.includes("@")) {
+    loggedIn = true;
+    document.getElementById("status").textContent = "تم تسجيل الدخول بنجاح.";
+    document.getElementById("loginBtn").textContent = "تسجيل الخروج";
+  } else {
+    alert("الرجاء إدخال بريد إلكتروني صحيح.");
+  }
+}
 
-      alert("تم تفعيل التحميل. سنربطه بملف Supabase في الخطوة التالية.");
-    }
-  </script>
+function readBook() {
+  alert("زر القراءة يعمل. سنربطه بملف الكتاب لاحقًا.");
+}
+
+function downloadBook() {
+  if (!loggedIn) {
+    alert("التحميل متاح للمسجلين فقط.");
+    return;
+  }
+
+  alert("زر التحميل يعمل. سنربطه بملف Supabase لاحقًا.");
+}
+</script>
 
 </body>
 </html>

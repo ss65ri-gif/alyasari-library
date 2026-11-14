@@ -57,7 +57,8 @@ button {
   color: #14532d;
 }
 
-#loginWindow {
+#loginWindow,
+#pdfWindow {
   display: none;
   position: fixed;
   top: 0;
@@ -68,7 +69,8 @@ button {
   z-index: 10;
 }
 
-.loginBox {
+.loginBox,
+.pdfBox {
   background: white;
   max-width: 350px;
   margin: 120px auto;
@@ -76,7 +78,8 @@ button {
   border-radius: 12px;
 }
 
-.loginBox h3 {
+.loginBox h3,
+.pdfBox h3 {
   color: #14532d;
   margin-top: 0;
 }
@@ -88,6 +91,17 @@ button {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
+}
+
+.pdfIcon {
+  background: #b91c1c;
+  color: white;
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 </style>
 </head>
@@ -106,7 +120,7 @@ button {
   <h2 id="bookTitle">الحدائق للاندلسي</h2>
   <p id="bookDesc">كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.</p>
   <button onclick="readBook()" id="readBtn">قراءة الكتاب</button>
-  <button onclick="downloadBook()" id="downloadBtn">تحميل الكتاب</button>
+  <button onclick="openPdfPage()" id="downloadBtn">تحميل الكتاب</button>
 </div>
 
 <p id="status">لم تسجل الدخول بعد.</p>
@@ -123,6 +137,16 @@ button {
     <br>
     <button onclick="confirmLogin()" id="confirmBtn">تأكيد</button>
     <button onclick="closeLogin()" id="cancelBtn">إلغاء</button>
+  </div>
+</div>
+
+<div id="pdfWindow">
+  <div class="pdfBox">
+    <div class="pdfIcon">PDF</div>
+    <h3 id="pdfTitle">تحميل الكتاب</h3>
+    <p id="pdfText">الملف بصيغة PDF. اضغط الزر أدناه لبدء التحميل.</p>
+    <button onclick="startDownload()" id="pdfDownloadBtn">تحميل PDF</button>
+    <button onclick="closePdfPage()" id="pdfCancelBtn">إلغاء</button>
   </div>
 </div>
 
@@ -149,6 +173,10 @@ function changeLanguage() {
   const emailInput = document.getElementById("emailInput");
   const confirmBtn = document.getElementById("confirmBtn");
   const cancelBtn = document.getElementById("cancelBtn");
+  const pdfTitle = document.getElementById("pdfTitle");
+  const pdfText = document.getElementById("pdfText");
+  const pdfDownloadBtn = document.getElementById("pdfDownloadBtn");
+  const pdfCancelBtn = document.getElementById("pdfCancelBtn");
 
   if (isArabic) {
     document.documentElement.dir = "rtl";
@@ -166,6 +194,10 @@ function changeLanguage() {
     emailInput.placeholder = "أدخل بريدك الإلكتروني";
     confirmBtn.textContent = "تأكيد";
     cancelBtn.textContent = "إلغاء";
+    pdfTitle.textContent = "تحميل الكتاب";
+    pdfText.textContent = "الملف بصيغة PDF. اضغط الزر أدناه لبدء التحميل.";
+    pdfDownloadBtn.textContent = "تحميل PDF";
+    pdfCancelBtn.textContent = "إلغاء";
 
     if (loggedIn) {
       loginBtn.textContent = "تسجيل الخروج";
@@ -190,6 +222,10 @@ function changeLanguage() {
     emailInput.placeholder = "Enter your email";
     confirmBtn.textContent = "Confirm";
     cancelBtn.textContent = "Cancel";
+    pdfTitle.textContent = "Download book";
+    pdfText.textContent = "The file is in PDF format. Press the button below to start downloading.";
+    pdfDownloadBtn.textContent = "Download PDF";
+    pdfCancelBtn.textContent = "Cancel";
 
     if (loggedIn) {
       loginBtn.textContent = "Log out";
@@ -250,7 +286,7 @@ function readBook() {
   window.open(bookUrl, "_blank");
 }
 
-function downloadBook() {
+function openPdfPage() {
   if (!loggedIn) {
     if (isArabic) {
       alert("التحميل متاح للمسجلين فقط.");
@@ -260,11 +296,17 @@ function downloadBook() {
     return;
   }
 
-  const downloadUrl = bookUrl + "?download=hadaiq.pdf";
-  window.open(downloadUrl, "_blank");
+  document.getElementById("pdfWindow").style.display = "block";
 }
 
-  window.open(bookUrl, "_blank");
+function closePdfPage() {
+  document.getElementById("pdfWindow").style.display = "none";
+}
+
+function startDownload() {
+  const downloadUrl = bookUrl + "?download=hadaiq.pdf";
+  window.open(downloadUrl, "_blank");
+  closePdfPage();
 }
 </script>
 

@@ -6,262 +6,73 @@
 <title>مكتبة الياسري الإلكترونية الرقمية</title>
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f5f1e6;
-  color: #2b2b2b;
-  margin: 0;
-  padding: 20px;
-  text-align: center;
-}
-
-header {
-  background: #14532d;
-  color: white;
-  padding: 25px 10px;
-  border-radius: 12px;
-}
-
-h1 {
-  margin: 0;
-  font-size: 26px;
-}
-
-button {
-  background: #14532d;
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  margin: 6px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.book {
-  background: white;
-  border: 1px solid #d8d2c0;
-  border-radius: 12px;
-  padding: 20px;
-  max-width: 500px;
-  margin: 20px auto;
-}
-
-.book h2 {
-  color: #14532d;
-  margin-top: 0;
-}
-
-#status {
-  font-weight: bold;
-  color: #14532d;
-}
-
-#loginWindow {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 10;
-}
-
-.loginBox {
-  background: white;
-  max-width: 350px;
-  margin: 120px auto;
-  padding: 25px;
-  border-radius: 12px;
-}
-
-.loginBox h3 {
-  color: #14532d;
-  margin-top: 0;
-}
-
-.loginBox input {
-  width: 90%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
+body { font-family: Arial; background:#f5f1e6; text-align:center; padding:20px; }
+header { background:#14532d; color:white; padding:25px; border-radius:12px; }
+button { background:#14532d; color:white; border:none; padding:12px 22px; margin:6px; border-radius:8px; font-size:16px; }
+.book { background:white; border:1px solid #d8d2c0; border-radius:12px; padding:20px; max-width:500px; margin:20px auto; }
+#status { font-weight:bold; color:#14532d; }
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1 id="siteTitle">مكتبة الياسري الإلكترونية الرقمية</h1>
-  <p id="siteLocation">البصرة، العراق</p>
+<h1 id="siteTitle">مكتبة الياسري الإلكترونية الرقمية</h1>
+<p id="siteLocation">البصرة، العراق</p>
 </header>
 
-<button onclick="changeLanguage()" id="langBtn">English</button>
-<button onclick="openLogin()" id="loginBtn">تسجيل الدخول</button>
+<button id="langBtn" onclick="toggleLanguage()">English</button>
+<button id="loginBtn" onclick="alert('زر تسجيل الدخول يعمل')">تسجيل الدخول</button>
 
 <div class="book">
-  <h2 id="bookTitle">الحدائق للاندلسي</h2>
-  <p id="bookDesc">كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.</p>
-  <button onclick="readBook()" id="readBtn">قراءة الكتاب</button>
-  <button onclick="downloadBook()" id="downloadBtn">تحميل الكتاب</button>
+<h2 id="bookTitle">الحدائق للاندلسي</h2>
+<p id="bookInfo">كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.</p>
+
+<button id="readBtn" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/public-books/hadaiq.pdf','_blank')">قراءة الكتاب</button>
+
+<button id="downloadBtn" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/public-books/hadaiq.pdf?download=hadaiq.pdf','_blank')">تحميل الكتاب</button>
+
 </div>
 
 <p id="status">لم تسجل الدخول بعد.</p>
 
-<p id="contact">
-الهاتف / واتساب: 07705677595<br>
-البريد الإلكتروني: ss65ri@gmail.com
-</p>
-
-<div id="loginWindow">
-  <div class="loginBox">
-    <h3 id="loginTitle">تسجيل الدخول</h3>
-    <input type="email" id="emailInput" placeholder="أدخل بريدك الإلكتروني">
-    <br>
-    <button onclick="confirmLogin()" id="confirmBtn">تأكيد</button>
-    <button onclick="closeLogin()" id="cancelBtn">إلغاء</button>
-  </div>
-</div>
+<p id="contactInfo">الهاتف / واتساب: 07705677595<br>البريد الإلكتروني: ss65ri@gmail.com</p>
 
 <script>
-let loggedIn = false;
 let isArabic = true;
 
-const bookUrl = "https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/public-books/hadaiq.pdf";
+function toggleLanguage() {
+isArabic = !isArabic;
 
-function changeLanguage() {
-  isArabic = !isArabic;
-
-  const title = document.getElementById("siteTitle");
-  const location = document.getElementById("siteLocation");
-  const langBtn = document.getElementById("langBtn");
-  const loginBtn = document.getElementById("loginBtn");
-  const bookTitle = document.getElementById("bookTitle");
-  const bookDesc = document.getElementById("bookDesc");
-  const readBtn = document.getElementById("readBtn");
-  const downloadBtn = document.getElementById("downloadBtn");
-  const status = document.getElementById("status");
-  const contact = document.getElementById("contact");
-  const loginTitle = document.getElementById("loginTitle");
-  const emailInput = document.getElementById("emailInput");
-  const confirmBtn = document.getElementById("confirmBtn");
-  const cancelBtn = document.getElementById("cancelBtn");
-
-  if (isArabic) {
-    document.documentElement.dir = "rtl";
-    document.documentElement.lang = "ar";
-
-    title.textContent = "مكتبة الياسري الإلكترونية الرقمية";
-    location.textContent = "البصرة، العراق";
-    langBtn.textContent = "English";
-    bookTitle.textContent = "الحدائق للاندلسي";
-    bookDesc.textContent = "كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.";
-    readBtn.textContent = "قراءة الكتاب";
-    downloadBtn.textContent = "تحميل الكتاب";
-    contact.innerHTML = "الهاتف / واتساب: 07705677595<br>البريد الإلكتروني: ss65ri@gmail.com";
-    loginTitle.textContent = "تسجيل الدخول";
-    emailInput.placeholder = "أدخل بريدك الإلكتروني";
-    confirmBtn.textContent = "تأكيد";
-    cancelBtn.textContent = "إلغاء";
-
-    if (loggedIn) {
-      loginBtn.textContent = "تسجيل الخروج";
-      status.textContent = "تم تسجيل الدخول بنجاح.";
-    } else {
-      loginBtn.textContent = "تسجيل الدخول";
-      status.textContent = "لم تسجل الدخول بعد.";
-    }
-  } else {
-    document.documentElement.dir = "ltr";
-    document.documentElement.lang = "en";
-
-    title.textContent = "Al-Yasari Digital Electronic Library";
-    location.textContent = "Basra, Iraq";
-    langBtn.textContent = "العربية";
-    bookTitle.textContent = "Al-Hadaeq by Al-Andalusi";
-    bookDesc.textContent = "A Shia scholarly book available for reading. Download is available for registered users only.";
-    readBtn.textContent = "Read book";
-    downloadBtn.textContent = "Download book";
-    contact.innerHTML = "Phone / WhatsApp: 07705677595<br>Email: ss65ri@gmail.com";
-    loginTitle.textContent = "Log in";
-    emailInput.placeholder = "Enter your email";
-    confirmBtn.textContent = "Confirm";
-    cancelBtn.textContent = "Cancel";
-
-    if (loggedIn) {
-      loginBtn.textContent = "Log out";
-      status.textContent = "You are logged in.";
-    } else {
-      loginBtn.textContent = "Log in";
-      status.textContent = "You are not logged in yet.";
-    }
-  }
+if (isArabic) {
+document.documentElement.lang = "ar";
+document.documentElement.dir = "rtl";
+document.getElementById("siteTitle").textContent = "مكتبة الياسري الإلكترونية الرقمية";
+document.getElementById("siteLocation").textContent = "البصرة، العراق";
+document.getElementById("langBtn").textContent = "English";
+document.getElementById("loginBtn").textContent = "تسجيل الدخول";
+document.getElementById("bookTitle").textContent = "الحدائق للاندلسي";
+document.getElementById("bookInfo").textContent = "كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.";
+document.getElementById("readBtn").textContent = "قراءة الكتاب";
+document.getElementById("downloadBtn").textContent = "تحميل الكتاب";
+document.getElementById("status").textContent = "لم تسجل الدخول بعد.";
+document.getElementById("contactInfo").innerHTML = "الهاتف / واتساب: 07705677595<br>البريد الإلكتروني: ss65ri@gmail.com";
 }
 
-function openLogin() {
-  if (loggedIn) {
-    loggedIn = false;
-
-    if (isArabic) {
-      document.getElementById("status").textContent = "تم تسجيل الخروج.";
-      document.getElementById("loginBtn").textContent = "تسجيل الدخول";
-    } else {
-      document.getElementById("status").textContent = "You have logged out.";
-      document.getElementById("loginBtn").textContent = "Log in";
-    }
-
-    return;
-  }
-
-  document.getElementById("loginWindow").style.display = "block";
+else {
+document.documentElement.lang = "en";
+document.documentElement.dir = "ltr";
+document.getElementById("siteTitle").textContent = "Al-Yasari Digital Electronic Library";
+document.getElementById("siteLocation").textContent = "Basra, Iraq";
+document.getElementById("langBtn").textContent = "العربية";
+document.getElementById("loginBtn").textContent = "Login";
+document.getElementById("bookTitle").textContent = "Al-Hadaeq by Al-Andalusi";
+document.getElementById("bookInfo").textContent = "A Shia scholarly book available for reading. Download is available to registered users only.";
+document.getElementById("readBtn").textContent = "Read Book";
+document.getElementById("downloadBtn").textContent = "Download Book";
+document.getElementById("status").textContent = "You are not logged in yet.";
+document.getElementById("contactInfo").innerHTML = "Phone / WhatsApp: 07705677595<br>Email: ss65ri@gmail.com";
 }
-
-function closeLogin() {
-  document.getElementById("loginWindow").style.display = "none";
-}
-
-function confirmLogin() {
-  const email = document.getElementById("emailInput").value;
-
-  if (email && email.includes("@")) {
-    loggedIn = true;
-    closeLogin();
-
-    if (isArabic) {
-      document.getElementById("status").textContent = "تم تسجيل الدخول بنجاح.";
-      document.getElementById("loginBtn").textContent = "تسجيل الخروج";
-    } else {
-      document.getElementById("status").textContent = "You are logged in.";
-      document.getElementById("loginBtn").textContent = "Log out";
-    }
-  } else {
-    if (isArabic) {
-      alert("الرجاء إدخال بريد إلكتروني صحيح.");
-    } else {
-      alert("Please enter a valid email.");
-    }
-  }
-}
-
-function readBook() {
-  window.open(bookUrl, "_blank");
-}
-
-function downloadBook() {
-  if (!loggedIn) {
-    if (isArabic) {
-      alert("التحميل متاح للمسجلين فقط.");
-    } else {
-      alert("Download is available for registered users only.");
-    }
-    return;
-  }
-
-  const downloadUrl = bookUrl + "?download=hadaiq.pdf";
-  window.open(downloadUrl, "_blank");
 }
 </script>
 

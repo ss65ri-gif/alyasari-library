@@ -55,14 +55,7 @@ button { background:#14532d; color:white; border:none; padding:12px 22px; margin
 
 <p>الهاتف / واتساب: 07705677595<br>البريد الإلكتروني: ss65ri@gmail.com</p>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-const supabaseUrl = "https://dwktxozijdycemdnywet.supabase.co";
-const supabaseKey = "ضع مفتاح Publishable هنا";
-
-let supabase = null;
-
 let isArabic = true;
 
 function toggleLanguage() {
@@ -74,9 +67,7 @@ document.documentElement.dir = "rtl";
 document.getElementById("siteTitle").textContent = "مكتبة الياسري الإلكترونية الرقمية";
 document.getElementById("siteLocation").textContent = "البصرة، العراق";
 document.getElementById("langBtn").textContent = "English";
-document.getElementById("loginBtn").textContent = "تسجيل الدخول";if (!supabase) {
-supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-}
+document.getElementById("loginBtn").textContent = "تسجيل الدخول";
 document.getElementById("bookTitle").textContent = "الحدائق للاندلسي";
 document.getElementById("bookInfo").textContent = "كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.";
 document.getElementById("status").textContent = "لم تسجل الدخول بعد.";
@@ -103,7 +94,7 @@ function closeLogin() {
 document.getElementById("loginBox").style.display = "none";
 }
 
-async function testLogin() {
+function testLogin() {
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
 
@@ -112,21 +103,7 @@ document.getElementById("loginMessage").textContent = "يرجى إدخال ال�
 return;
 }
 
-document.getElementById("loginMessage").textContent = "جاري تسجيل الدخول...";
-
-let result = await supabase.auth.signInWithPassword({
-email: email,
-password: password
-});
-
-if (result.error) {
-document.getElementById("loginMessage").textContent = "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
-return;
-}
-
-document.getElementById("loginMessage").textContent = "تم تسجيل الدخول بنجاح.";
-document.getElementById("status").textContent = "مرحبًا بك، تم تسجيل الدخول.";
-closeLogin();
+document.getElementById("loginMessage").textContent = "تم إدخال البيانات بنجاح.";
 }
 </script>
 

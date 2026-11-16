@@ -41,8 +41,17 @@ button { background:#14532d; color:white; border:none; padding:12px 22px; margin
 
 <input id="email" type="email" placeholder="البريد الإلكتروني" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:8px;">
 
-<input id="password" type="password" placeholder="كلمة المرور" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:8px;">
+function testLogin() {
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
 
+if (email === "" || password === "") {
+document.getElementById("loginMessage").textContent = "يرجى إدخال البريد وكلمة المرور.";
+return;
+}
+
+document.getElementById("loginMessage").textContent = "تم إدخال البيانات بنجاح.";
+}
 <button onclick="closeLogin()" style="background:#777;">إغلاق</button>
 <button onclick="testLogin()">دخول</button>
 

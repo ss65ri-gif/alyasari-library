@@ -61,7 +61,7 @@ button { background:#14532d; color:white; border:none; padding:12px 22px; margin
 const supabaseUrl = "https://dwktxozijdycemdnywet.supabase.co";
 const supabaseKey = "ضع مفتاح Publishable هنا";
 
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+let supabase = null;
 
 let isArabic = true;
 
@@ -74,7 +74,9 @@ document.documentElement.dir = "rtl";
 document.getElementById("siteTitle").textContent = "مكتبة الياسري الإلكترونية الرقمية";
 document.getElementById("siteLocation").textContent = "البصرة، العراق";
 document.getElementById("langBtn").textContent = "English";
-document.getElementById("loginBtn").textContent = "تسجيل الدخول";
+document.getElementById("loginBtn").textContent = "تسجيل الدخول";if (!supabase) {
+supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+}
 document.getElementById("bookTitle").textContent = "الحدائق للاندلسي";
 document.getElementById("bookInfo").textContent = "كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.";
 document.getElementById("status").textContent = "لم تسجل الدخول بعد.";

@@ -22,7 +22,7 @@ button { background:#14532d; color:white; border:none; padding:12px 22px; margin
 </header>
 
 <button id="langBtn" onclick="toggleLanguage()">English</button>
-<button id="loginBtn" onclick="alert('زر تسجيل الدخول يعمل')">تسجيل الدخول</button>
+<button id="loginBtn" onclick="openLogin()">تسجيل الدخول</button>
 
 <div class="book">
 <h2 id="bookTitle">الحدائق للاندلسي</h2>
@@ -34,11 +34,44 @@ button { background:#14532d; color:white; border:none; padding:12px 22px; margin
 
 </div>
 
-<p id="status">لم تسجل الدخول بعد.</p>
+<div id="loginBox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:100;">
+<div style="background:white; max-width:350px; margin:100px auto; padding:25px; border-radius:12px;">
+
+<h3>تسجيل الدخول</h3>
+
+<input id="email" type="email" placeholder="البريد الإلكتروني" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:8px;">
+
+<input id="password" type="password" placeholder="كلمة المرور" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:8px;">
+
+<button onclick="closeLogin()" style="background:#777;">إغلاق</button>
+<button onclick="testLogin()">دخول</button>
+
+<p id="loginMessage" style="color:red;"></p>
+
+</div>
+</div> <p id="status">لم تسجل الدخول بعد.</p>
 
 <p id="contactInfo">الهاتف / واتساب: 07705677595<br>البريد الإلكتروني: ss65ri@gmail.com</p>
 
-<script>
+<script> function openLogin() {
+document.getElementById("loginBox").style.display = "block";
+}
+
+function closeLogin() {
+document.getElementById("loginBox").style.display = "none";
+}
+
+function testLogin() {
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+if (email === "" || password === "") {
+document.getElementById("loginMessage").textContent = "يرجى إدخال البريد وكلمة المرور.";
+return;
+}
+
+document.getElementById("loginMessage").textContent = "تم فتح النافذة بنجاح، وسيتم ربطها بـ Supabase في الخطوة التالية.";
+}
 let isArabic = true;
 
 function toggleLanguage() {

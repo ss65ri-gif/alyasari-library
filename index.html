@@ -53,7 +53,7 @@ button { background:#14532d; color:white; border:none; padding:12px 22px; margin
 
 <p id="contactInfo">الهاتف / واتساب: 07705677595<br>البريد الإلكتروني: ss65ri@gmail.com</p>
 
-<script> function openLogin() {
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <script> function openLogin() {
 document.getElementById("loginBox").style.display = "block";
 }
 
@@ -61,7 +61,11 @@ function closeLogin() {
 document.getElementById("loginBox").style.display = "none";
 }
 
-function testLogin() {
+const supabaseUrl = "https://dwktxozijdycemdnywet.supabase.co";
+const supabaseKey = " sb_publishable_
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+async function testLogin() {
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
 
@@ -70,7 +74,21 @@ document.getElementById("loginMessage").textContent = "يرجى إدخال ال�
 return;
 }
 
-document.getElementById("loginMessage").textContent = "تم فتح النافذة بنجاح، وسيتم ربطها بـ Supabase في الخطوة التالية.";
+document.getElementById("loginMessage").textContent = "جاري تسجيل الدخول...";
+
+let result = await supabase.auth.signInWithPassword({
+email: email,
+password: password
+});
+
+if (result.error) {
+document.getElementById("loginMessage").textContent = "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+return;
+}
+
+document.getElementById("loginMessage").textContent = "تم تسجيل الدخول بنجاح.";
+document.getElementById("status").textContent = "مرحبًا بك، تم تسجيل الدخول.";
+closeLogin();
 }
 let isArabic = true;
 

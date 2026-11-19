@@ -15,37 +15,42 @@ body {
   color: #222;
 }
 
-.topbar {
+header {
   background: #0b3d2e;
   color: #fff;
-  padding: 10px 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 30px 20px;
+  text-align: center;
   border-bottom: 4px solid #c9a227;
 }
 
-.topbar-right {
+.header-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 15px;
 }
 
 .menu-btn {
   background: #c9a227;
   border: none;
   color: #14352a;
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  font-size: 22px;
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  font-size: 24px;
   cursor: pointer;
 }
 
-.topbar-title {
+header h1 {
   font-family: 'Aref Ruqaa', serif;
-  font-size: 22px;
+  font-size: 32px;
   color: #c9a227;
+  margin: 0;
+}
+
+header p {
+  margin: 10px 0 0;
+  color: #e8e2c9;
 }
 
 .sidebar {
@@ -94,27 +99,6 @@ body {
   font-size: 24px;
   cursor: pointer;
   margin-bottom: 15px;
-}
-
-header {
-  background: #0b3d2e;
-  color: #fff;
-  padding: 30px 20px;
-  text-align: center;
-  border-bottom: 4px solid #c9a227;
-  margin-top: 70px;
-}
-
-header h1 {
-  font-family: 'Aref Ruqaa', serif;
-  font-size: 34px;
-  color: #c9a227;
-  margin: 0 0 10px;
-}
-
-header p {
-  margin: 0;
-  color: #e8e2c9;
 }
 
 main {
@@ -179,12 +163,14 @@ footer {
 
 <body>
 
-<div class="topbar">
-  <div class="topbar-right">
+<header>
+  <div class="header-row">
     <button class="menu-btn" onclick="openMenu()">☰</button>
-    <div class="topbar-title">مكتبة الياسري</div>
+    <h1>مكتبة الياسري الإلكترونية الرقمية</h1>
   </div>
-</div>
+
+  <p>مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها</p>
+</header>
 
 <div class="sidebar" id="sidebar">
   <button class="close-btn" onclick="closeMenu()">✕</button>
@@ -197,11 +183,6 @@ footer {
   <a href="#">التواصل</a>
   <a href="#">تسجيل الدخول</a>
 </div>
-
-<header>
-  <h1>مكتبة الياسري الإلكترونية الرقمية</h1>
-  <p>مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها</p>
-</header>
 
 <main>
 

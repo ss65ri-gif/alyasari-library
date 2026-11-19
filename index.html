@@ -5,105 +5,284 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مكتبة الياسري الإلكترونية الرقمية</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body { font-family: Arial; background:#f5f1e6; text-align:center; padding:20px; }
-header { background:#14532d; color:white; padding:25px; border-radius:12px; }
-button { background:#14532d; color:white; border:none; padding:12px 22px; margin:6px; border-radius:8px; font-size:16px; }
-.book { background:white; border:1px solid #d8d2c0; border-radius:12px; padding:20px; max-width:500px; margin:20px auto; }
-#status { font-weight:bold; color:#14532d; }
-</style>
-</head>
-
-<body>
-
-<header>
-<h1 id="siteTitle">مكتبة الياسري الإلكترونية الرقمية</h1>
-<p id="siteLocation">البصرة، العراق</p>
-</header>
-
-<button id="langBtn" onclick="toggleLanguage()">English</button>
-<button id="loginBtn" onclick="openLogin()">تسجيل الدخول</button>
-
-<div class="book">
-<h2 id="bookTitle">الحدائق للاندلسي</h2>
-<p id="bookInfo">كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.</p>
-
-<button onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/public-books/hadaiq.pdf','_blank')">قراءة الكتاب</button>
-
-<button onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/public-books/hadaiq.pdf?download=hadaiq.pdf','_blank')">تحميل الكتاب</button>
-
-</div>
-
-<div id="loginBox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:100;">
-<div style="background:white; max-width:350px; margin:100px auto; padding:25px; border-radius:12px;">
-
-<h3>تسجيل الدخول</h3>
-
-<input id="email" type="email" placeholder="البريد الإلكتروني" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:8px;">
-
-<button onclick="closeLogin()" style="background:#777;">إغلاق</button>
-<button onclick="testLogin()">دخول</button>
-
-<p id="loginMessage" style="color:red;"></p>
-
-</div>
-</div>
-
-<p id="status">لم تسجل الدخول بعد.</p>
-
-<p>الهاتف / واتساب: 07705677595<br>البريد الإلكتروني: ss65ri@gmail.com</p>
-
-<script>
-let isArabic = true;
-
-function toggleLanguage() {
-isArabic = !isArabic;
-
-if (isArabic) {
-document.documentElement.lang = "ar";
-document.documentElement.dir = "rtl";
-document.getElementById("siteTitle").textContent = "مكتبة الياسري الإلكترونية الرقمية";
-document.getElementById("siteLocation").textContent = "البصرة، العراق";
-document.getElementById("langBtn").textContent = "English";
-document.getElementById("loginBtn").textContent = "تسجيل الدخول";
-document.getElementById("bookTitle").textContent = "الحدائق للاندلسي";
-document.getElementById("bookInfo").textContent = "كتاب علمي شيعي متاح للقراءة، والتحميل متاح للمسجلين فقط.";
-document.getElementById("status").textContent = "لم تسجل الدخول بعد.";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Cairo', sans-serif;
 }
 
-else {
-document.documentElement.lang = "en";
-document.documentElement.dir = "ltr";
-document.getElementById("siteTitle").textContent = "Al-Yasari Digital Electronic Library";
-document.getElementById("siteLocation").textContent = "Basra, Iraq";
-document.getElementById("langBtn").textContent = "العربية";
-document.getElementById("loginBtn").textContent = "Login";
-document.getElementById("bookTitle").textContent = "Al-Hadaeq by Al-Andalusi";
-document.getElementById("bookInfo").textContent = "A Shia scholarly book available for reading. Download is available to registered users only.";
-document.getElementById("status").textContent = "You are not logged in yet.";
-}
+body {
+  background: #f7f5ef;
+  color: #222;
 }
 
-function openLogin() {
-document.getElementById("loginBox").style.display = "block";
+.topbar {
+  background: #0b3d2e;
+  color: #fff;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 4px solid #c9a227;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
 }
 
-function closeLogin() {
-document.getElementById("loginBox").style.display = "none";
+.topbar-title {
+  font-family: 'Amiri', serif;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-function testLogin() {
-let email = document.getElementById("email").value;
-
-if (email === "") {
-document.getElementById("loginMessage").textContent = "يرجى إدخال البريد الإلكتروني.";
-return;
+.topbar-buttons {
+  display: flex;
+  gap: 10px;
 }
 
-document.getElementById("status").textContent = "مرحبًا بك، تم تسجيل الدخول.";
-closeLogin();
+.icon-btn {
+  background: #c9a227;
+  border: none;
+  color: #14352a;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
 }
-</script>
 
-</body>
-</html>
+.menu-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 280px;
+  height: 100%;
+  background: #0b3d2e;
+  color: #fff;
+  padding: 25px 20px;
+  transition: right 0.3s;
+  z-index: 200;
+  border-left: 4px solid #c9a227;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.sidebar h2 {
+  font-family: 'Amiri', serif;
+  color: #c9a227;
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+}
+
+.sidebar a:hover {
+  background: #c9a227;
+  color: #14352a;
+}
+
+.close-sidebar {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+main {
+  padding-top: 100px;
+  max-width: 1000px;
+  margin: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.hero {
+  background: #fff;
+  border-top: 5px solid #c9a227;
+  border-radius: 20px;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+  font-family: 'Amiri', serif;
+  font-size: 32px;
+  color: #0b3d2e;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #556;
+}
+
+.search-box {
+  margin-top: 20px;
+}
+
+.search-box input {
+  width: 90%;
+  max-width: 500px;
+  padding: 13px;
+  border: 2px solid #c9a227;
+  border-radius: 30px;
+  font-size: 16px;
+}
+
+.section-title {
+  font-family: 'Amiri', serif;
+  font-size: 26px;
+  color: #0b3d2e;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.book-card {
+  background: #fff;
+  border-top: 5px solid #c9a227;
+  border-radius: 18px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.book-icon {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.book-card h2 {
+  font-family: 'Amiri', serif;
+  color: #0b3d2e;
+  margin-bottom: 10px;
+}
+
+.book-card p {
+  color: #556;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.read-btn {
+  background: #14523c;
+  color: #fff;
+}
+
+.download-btn {
+  background: #c9a227;
+  color: #14352a;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 300;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+  border-top: 5px solid #c9a227;
+}
+
+.modal-content h2 {
+  font-family: 'Amiri', serif;
+  color: #0b3d2e;
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 12px;
+  background: #14523c;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.close-btn {
+  background: #999 !important;
+  color: #fff !important;
+}
+
+.top-btn {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  background: #c9a227;
+  color: #14352a;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+  z-index: 150;
+}
+
+.top-btn.show {
+  display: bl

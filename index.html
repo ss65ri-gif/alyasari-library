@@ -11,60 +11,157 @@
 body {
   margin: 0;
   font-family: 'Cairo', sans-serif;
-  background: #f7f5ef;
-  color: #222;
+  background: #f7f4ec;
+  color: #22301f;
+}
+
+/* زخرفة خلفية خفيفة */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(201,162,39,0.08) 0, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(20,82,60,0.08) 0, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 header {
-  background: #0b3d2e;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, #0b3d2e, #14523c);
   color: #fff;
-  padding: 25px 15px;
+  padding: 35px 20px;
   text-align: center;
-  border-bottom: 4px solid #c9a227;
+  border-bottom: 5px solid #c9a227;
 }
 
 .header-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .menu-btn {
   background: #c9a227;
   border: none;
   color: #14352a;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  font-size: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 22px;
   cursor: pointer;
   flex-shrink: 0;
 }
 
 header h1 {
   font-family: 'Aref Ruqaa', serif;
-  font-size: 22px;
+  font-size: 24px;
   color: #c9a227;
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 header p {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   color: #e8e2c9;
-  font-size: 14px;
+  font-size: 15px;
 }
 
+/* شريط ذهبي مزخرف */
+.gold-line {
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    #c9a227 0,
+    #c9a227 20px,
+    #0b3d2e 20px,
+    #0b3d2e 40px
+  );
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 950px;
+  margin: 35px auto;
+  padding: 0 15px;
+}
+
+.section-title {
+  font-family: 'Aref Ruqaa', serif;
+  font-size: 26px;
+  color: #0b3d2e;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.book-card {
+  background: #fff;
+  border: 2px solid #c9a227;
+  border-radius: 18px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.book-icon {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.book-card h2 {
+  font-family: 'Aref Ruqaa', serif;
+  color: #0b3d2e;
+  margin: 0 0 10px;
+}
+
+.book-card p {
+  color: #556;
+  margin: 0 0 20px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.read {
+  background: #14523c;
+  color: #fff;
+}
+
+.download {
+  background: #c9a227;
+  color: #14352a;
+}
+
+/* القائمة الجانبية */
 .sidebar {
   position: fixed;
   top: 0;
   right: -300px;
-  width: 270px;
+  width: 280px;
   height: 100%;
   background: #0b3d2e;
   color: #fff;
-  padding: 20px;
+  padding: 25px 20px;
   transition: right 0.3s;
   z-index: 200;
   border-left: 4px solid #c9a227;
@@ -104,62 +201,15 @@ header p {
   margin-bottom: 15px;
 }
 
-main {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 0 15px;
-}
-
-.card {
-  background: #fff;
-  border-top: 5px solid #c9a227;
-  border-radius: 16px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  margin-bottom: 25px;
-}
-
-h2 {
-  font-family: 'Aref Ruqaa', serif;
-  color: #0b3d2e;
-  margin: 0 0 10px;
-}
-
-p {
-  color: #556;
-  margin: 0 0 20px;
-}
-
-button {
-  display: block;
-  width: 100%;
-  padding: 13px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.read {
-  background: #14523c;
-  color: #fff;
-}
-
-.download {
-  background: #c9a227;
-  color: #14352a;
-}
-
 footer {
+  position: relative;
+  z-index: 1;
   background: #0b3d2e;
   color: #e8e2c9;
   text-align: center;
   padding: 20px;
-  margin-top: 40px;
-  border-top: 4px solid #c9a227;
+  margin-top: 50px;
+  border-top: 5px solid #c9a227;
 }
 </style>
 </head>
@@ -175,6 +225,8 @@ footer {
   <p>مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها</p>
 </header>
 
+<div class="gold-line"></div>
+
 <div class="sidebar" id="sidebar">
   <button class="close-btn" onclick="closeMenu()">✕</button>
 
@@ -189,17 +241,24 @@ footer {
 
 <main>
 
-  <div class="card">
-    <h2>الحدائق للاندلسي</h2>
-    <p>كتاب إسلامي متاح للقراءة والتحميل.</p>
+  <h2 class="section-title">الكتب المتاحة</h2>
 
-    <button class="read" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank')">
-      قراءة الكتاب
-    </button>
+  <div class="book-grid">
 
-    <button class="download" onclick="downloadBook()">
-      تحميل الكتاب
-    </button>
+    <div class="book-card">
+      <div class="book-icon">📖</div>
+      <h2>الحدائق للاندلسي</h2>
+      <p>كتاب إسلامي متاح للقراءة والتحميل.</p>
+
+      <button class="btn read" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank')">
+        قراءة الكتاب
+      </button>
+
+      <button class="btn download" onclick="downloadBook()">
+        تحميل الكتاب
+      </button>
+    </div>
+
   </div>
 
 </main>

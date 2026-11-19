@@ -15,7 +15,6 @@ body {
   color: #fff;
 }
 
-/* زخرفة خلفية */
 body::before {
   content: "";
   position: fixed;
@@ -27,7 +26,6 @@ body::before {
   z-index: 0;
 }
 
-/* شريط ذهبي علوي */
 .top-gold {
   height: 10px;
   background: linear-gradient(90deg, #c9a227, #f6d365, #c9a227);
@@ -150,15 +148,15 @@ main {
   border: 2px solid #c9a227;
 }
 
-/* القائمة الجانبية */
+/* القائمة الجانبية الخفيفة */
 .sidebar {
   position: fixed;
   top: 0;
   right: -320px;
   width: 300px;
   height: 100%;
-  background: #06251c;
-  color: #fff;
+  background: #e9f5ef;
+  color: #06251c;
   padding: 25px 20px;
   transition: right 0.3s;
   z-index: 200;
@@ -171,18 +169,19 @@ main {
 
 .sidebar h2 {
   font-family: 'Aref Ruqaa', serif;
-  color: #c9a227;
+  color: #0b3d2e;
   margin: 0 0 20px;
 }
 
 .sidebar a {
   display: block;
-  color: #fff;
+  color: #06251c;
   text-decoration: none;
   padding: 14px;
   margin-bottom: 10px;
   border-radius: 12px;
-  background: rgba(255,255,255,0.08);
+  background: #ffffff;
+  border: 1px solid #c9a227;
 }
 
 .sidebar a:hover {
@@ -193,7 +192,7 @@ main {
 .close-btn {
   background: transparent;
   border: none;
-  color: #fff;
+  color: #06251c;
   font-size: 26px;
   cursor: pointer;
   margin-bottom: 15px;

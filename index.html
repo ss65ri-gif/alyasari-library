@@ -56,8 +56,7 @@ header {
   top: 18px;
   left: 18px;
   display: flex;
-  flex-direction: row;
-  direction: ltr;
+  flex-direction: column;
   gap: 8px;
   z-index: 300;
 }
@@ -229,11 +228,6 @@ body.night .book-card {
 body.night footer {
   background: #0a0a0a;
 }
-
-body.night .book-card p,
-body.night header p {
-  color: #e8e2c9;
-}
 </style>
 </head>
 
@@ -322,7 +316,6 @@ function toggleTheme() {
   try {
     localStorage.setItem("theme", isNight ? "night" : "day");
   } catch (error) {
-    /* لا يمنع عمل الزر إذا منع المتصفح الحفظ */
   }
 }
 
@@ -335,23 +328,17 @@ function toggleLanguage() {
 
     document.querySelector(".header-inner h1").textContent = "Al-Yasiri Electronic Library";
     document.querySelector(".header-inner p").textContent = "An Islamic digital library for reading books";
-
     document.querySelector(".section-title").textContent = "Available Books";
-
     document.querySelector(".book-card h2").textContent = "Al-Hadaeq by Al-Andalusi";
     document.querySelector(".book-card p").textContent = "An Islamic book available for reading and download.";
-
     readButton.textContent = "Read Book";
     downloadButton.textContent = "Download Book";
-
     document.querySelector(".sidebar h2").textContent = "Menu";
-
     document.getElementById("homeLink").textContent = "Home";
     document.getElementById("sectionsLink").textContent = "Library Sections";
     document.getElementById("booksLink").textContent = "Books";
     document.getElementById("contactLink").textContent = "Contact";
     document.getElementById("loginLink").textContent = "Login";
-
     document.querySelector("footer p").textContent = "Al-Yasiri Electronic Library";
   } else {
     document.documentElement.lang = "ar";
@@ -359,23 +346,17 @@ function toggleLanguage() {
 
     document.querySelector(".header-inner h1").textContent = "مكتبة الياسري الإلكترونية";
     document.querySelector(".header-inner p").textContent = "مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها";
-
     document.querySelector(".section-title").textContent = "الكتب المتاحة";
-
     document.querySelector(".book-card h2").textContent = "الحدائق للاندلسي";
     document.querySelector(".book-card p").textContent = "كتاب إسلامي متاح للقراءة والتحميل.";
-
     readButton.textContent = "قراءة الكتاب";
     downloadButton.textContent = "تحميل الكتاب";
-
     document.querySelector(".sidebar h2").textContent = "القائمة";
-
     document.getElementById("homeLink").textContent = "الصفحة الرئيسية";
     document.getElementById("sectionsLink").textContent = "أقسام المكتبة";
     document.getElementById("booksLink").textContent = "الكتب";
     document.getElementById("contactLink").textContent = "التواصل";
     document.getElementById("loginLink").textContent = "تسجيل الدخول";
-
     document.querySelector("footer p").textContent = "مكتبة الياسري الإلكترونية";
   }
 }
@@ -451,7 +432,6 @@ try {
     themeButton.textContent = "☀️";
   }
 } catch (error) {
-  /* لا يمنع عمل الصفحة إذا منع المتصفح الحفظ */
 }
 </script>
 

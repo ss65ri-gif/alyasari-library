@@ -61,7 +61,8 @@ header {
 }
 
 .theme-btn,
-.top-btn {
+.top-btn,
+.lang-btn {
   width: 38px;
   height: 38px;
   border: none;
@@ -236,6 +237,7 @@ body.night footer {
 <div class="fixed-buttons">
   <button class="top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆️</button>
   <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
+  <button class="lang-btn" onclick="toggleLanguage()">🌐</button>
 </div>
 
 <header>
@@ -310,6 +312,18 @@ var savedTheme = localStorage.getItem("theme");
 if (savedTheme === "night") {
   document.body.classList.add("night");
   document.getElementById("themeBtn").textContent = "☀️";
+}
+
+function toggleLanguage() {
+  var html = document.documentElement;
+
+  if (html.getAttribute("lang") === "ar") {
+    html.setAttribute("lang", "en");
+    html.setAttribute("dir", "ltr");
+  } else {
+    html.setAttribute("lang", "ar");
+    html.setAttribute("dir", "rtl");
+  }
 }
 </script>
 

@@ -199,13 +199,13 @@ body.night footer {
 <div class="top-gold"></div>
 
 <div class="fixed-buttons">
-  <button class="top-btn" type="button">⬆️</button>
-  <button class="theme-btn" id="themeBtn" type="button">🌙</button>
-  <button class="lang-btn" type="button">🌐</button>
+  <button class="top-btn" type="button" onclick="goTop()">⬆️</button>
+  <button class="theme-btn" id="themeBtn" type="button" onclick="toggleTheme()">🌙</button>
+  <button class="lang-btn" type="button" onclick="toggleLanguage()">🌐</button>
 </div>
 
 <header>
-  <button class="menu-btn" type="button">☰</button>
+  <button class="menu-btn" type="button" onclick="openMenu()">☰</button>
 
   <div class="header-inner">
     <h1>مكتبة الياسري الإلكترونية</h1>
@@ -214,15 +214,15 @@ body.night footer {
 </header>
 
 <div class="sidebar" id="sidebar">
-  <button class="close-btn" type="button">✕</button>
+  <button class="close-btn" type="button" onclick="closeMenu()">✕</button>
 
   <h2>القائمة</h2>
 
-  <a href="#" id="homeLink">الصفحة الرئيسية</a>
-  <a href="#" id="sectionsLink">أقسام المكتبة</a>
-  <a href="#" id="booksLink">الكتب</a>
-  <a href="#" id="contactLink">التواصل</a>
-  <a href="#" id="loginLink">تسجيل الدخول</a>
+  <a href="#" onclick="closeMenu(); return false;">الصفحة الرئيسية</a>
+  <a href="#" onclick="closeMenu(); return false;">أقسام المكتبة</a>
+  <a href="#" onclick="closeMenu(); return false;">الكتب</a>
+  <a href="#" onclick="closeMenu(); return false;">التواصل</a>
+  <a href="#" onclick="closeMenu(); return false;">تسجيل الدخول</a>
 </div>
 
 <main>
@@ -238,106 +238,67 @@ body.night footer {
 </footer>
 
 <script>
-var menuButton = document.querySelector(".menu-btn");
-var closeButton = document.querySelector(".close-btn");
-var sidebar = document.getElementById("sidebar");
-var themeButton = document.getElementById("themeBtn");
-var languageButton = document.querySelector(".lang-btn");
-var topButton = document.querySelector(".top-btn");
+function openMenu() {
+  document.getElementById("sidebar").classList.add("open");
+}
 
-if (menuButton) {
-  menuButton.addEventListener("click", function () {
-    sidebar.classList.add("open");
+function closeMenu() {
+  document.getElementById("sidebar").classList.remove("open");
+}
+
+function goTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
   });
 }
 
-if (closeButton) {
-  closeButton.addEventListener("click", function () {
-    sidebar.classList.remove("open");
-  });
+function toggleTheme() {
+  var isNight = document.body.classList.toggle("night");
+  var themeButton = document.getElementById("themeBtn");
+
+  if (isNight) {
+    themeButton.textContent = "☀️";
+  } else {
+    themeButton.textContent = "🌙";
+  }
+
+  try {
+    localStorage.setItem("theme", isNight ? "night" : "day");
+  } catch (error) {
+  }
 }
 
-if (themeButton) {
-  themeButton.addEventListener("click", function () {
-    var isNight = document.body.classList.toggle("night");
+function toggleLanguage() {
+  var isEnglish = document.documentElement.lang === "ar";
 
-    if (isNight) {
-      themeButton.textContent = "☀️";
-    } else {
-      themeButton.textContent = "🌙";
-    }
+  if (isEnglish) {
+    document.documentElement.lang = "en";
+    document.documentElement.dir = "ltr";
 
-    try {
-      localStorage.setItem("theme", isNight ? "night" : "day");
-    } catch (error) {
-    }
-  });
-}
+    document.querySelector(".header-inner h1").textContent = "Al-Yasiri Electronic Library";
+    document.querySelector(".header-inner p").textContent = "An Islamic digital library for reading books";
+    document.querySelector(".section-title").textContent = "Available Books";
+    document.querySelector(".empty-message").textContent = "No books are available at the moment.";
+    document.querySelector(".sidebar h2").textContent = "Menu";
+    document.querySelector("footer p").textContent = "Al-Yasiri Electronic Library";
+  } else {
+    document.documentElement.lang = "ar";
+    document.documentElement.dir = "rtl";
 
-if (languageButton) {
-  languageButton.addEventListener("click", function () {
-    var isEnglish = document.documentElement.lang === "ar";
-
-    if (isEnglish) {
-      document.documentElement.lang = "en";
-      document.documentElement.dir = "ltr";
-
-      document.querySelector(".header-inner h1").textContent = "Al-Yasiri Electronic Library";
-      document.querySelector(".header-inner p").textContent = "An Islamic digital library for reading books";
-      document.querySelector(".section-title").textContent = "Available Books";
-      document.querySelector(".empty-message").textContent = "No books are available at the moment.";
-      document.querySelector(".sidebar h2").textContent = "Menu";
-      document.getElementById("homeLink").textContent = "Home";
-      document.getElementById("sectionsLink").textContent = "Library Sections";
-      document.getElementById("booksLink").textContent = "Books";
-      document.getElementById("contactLink").textContent = "Contact";
-      document.getElementById("loginLink").textContent = "Login";
-      document.querySelector("footer p").textContent = "Al-Yasiri Electronic Library";
-    } else {
-      document.documentElement.lang = "ar";
-      document.documentElement.dir = "rtl";
-
-      document.querySelector(".header-inner h1").textContent = "مكتبة الياسري الإلكترونية";
-      document.querySelector(".header-inner p").textContent = "مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها";
-      document.querySelector(".section-title").textContent = "الكتب المتاحة";
-      document.querySelector(".empty-message").textContent = "لا توجد كتب متاحة حاليًا.";
-      document.querySelector(".sidebar h2").textContent = "القائمة";
-      document.getElementById("homeLink").textContent = "الصفحة الرئيسية";
-      document.getElementById("sectionsLink").textContent = "أقسام المكتبة";
-      document.getElementById("booksLink").textContent = "الكتب";
-      document.getElementById("contactLink").textContent = "التواصل";
-      document.getElementById("loginLink").textContent = "تسجيل الدخول";
-      document.querySelector("footer p").textContent = "مكتبة الياسري الإلكترونية";
-    }
-  });
-}
-
-if (topButton) {
-  topButton.addEventListener("click", function () {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-}
-
-var sidebarLinks = document.querySelectorAll(".sidebar a");
-
-for (var i = 0; i < sidebarLinks.length; i++) {
-  sidebarLinks[i].addEventListener("click", function (event) {
-    event.preventDefault();
-    sidebar.classList.remove("open");
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
+    document.querySelector(".header-inner h1").textContent = "مكتبة الياسري الإلكترونية";
+    document.querySelector(".header-inner p").textContent = "مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها";
+    document.querySelector(".section-title").textContent = "الكتب المتاحة";
+    document.querySelector(".empty-message").textContent = "لا توجد كتب متاحة حاليًا.";
+    document.querySelector(".sidebar h2").textContent = "القائمة";
+    document.querySelector("footer p").textContent = "مكتبة الياسري الإلكترونية";
+  }
 }
 
 try {
   if (localStorage.getItem("theme") === "night") {
     document.body.classList.add("night");
-    themeButton.textContent = "☀️";
+    document.getElementById("themeBtn").textContent = "☀️";
   }
 } catch (error) {
 }

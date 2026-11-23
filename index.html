@@ -15,25 +15,12 @@ body {
   color: #fff;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 15% 15%, rgba(201,162,39,0.12) 0, transparent 45%),
-    radial-gradient(circle at 85% 85%, rgba(201,162,39,0.10) 0, transparent 45%);
-  pointer-events: none;
-  z-index: 0;
-}
-
 .top-gold {
   height: 10px;
   background: linear-gradient(90deg, #c9a227, #f6d365, #c9a227);
 }
 
 header {
-  position: relative;
-  z-index: 1;
   text-align: center;
   padding: 45px 20px;
   background: linear-gradient(180deg, #06251c, #0b3d2e);
@@ -78,8 +65,6 @@ header p {
 }
 
 main {
-  position: relative;
-  z-index: 1;
   max-width: 1000px;
   margin: 45px auto;
   padding: 0 15px;
@@ -134,7 +119,6 @@ main {
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
-  text-decoration: none;
 }
 
 .read {
@@ -183,11 +167,6 @@ main {
   border: 1px solid #c9a227;
 }
 
-.sidebar a:hover {
-  background: #c9a227;
-  color: #06251c;
-}
-
 .close-btn {
   background: transparent;
   border: none;
@@ -198,8 +177,6 @@ main {
 }
 
 footer {
-  position: relative;
-  z-index: 1;
   background: #06251c;
   color: #e8e2c9;
   text-align: center;
@@ -208,69 +185,24 @@ footer {
   border-top: 6px solid #c9a227;
 }
 
-#site-tools {
+#top-btn {
   position: fixed;
-  top: 12px;
-  left: 12px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-}
-
-#site-tools button {
-  width: 46px;
-  height: 46px;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
   border: none;
   border-radius: 50%;
   background: #1f4e3d;
   color: #fff;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 22px;
   cursor: pointer;
-  box-shadow: 0 3px 10px rgba(0,0,0,.25);
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(35px) scale(0.97);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-body.dark-mode {
-  background: #101418 !important;
-  color: #e8e8e8 !important;
-}
-
-body.dark-mode header,
-body.dark-mode main,
-body.dark-mode .book-card,
-body.dark-mode .sidebar,
-body.dark-mode footer {
-  background: #171c21 !important;
-  color: #e8e8e8 !important;
-}
-
-body.english-mode {
-  direction: ltr !important;
-  text-align: left !important;
+  z-index: 9999;
 }
 </style>
 </head>
 
 <body>
-
-<div id="site-tools">
-  <button id="theme-btn" title="الوضع الليلي / النهاري">🌙</button>
-  <button id="lang-btn" title="العربية / English">ع</button>
-  <button id="top-btn" title="العودة للأعلى">⬆️</button>
-</div>
 
 <div class="top-gold"></div>
 
@@ -278,37 +210,37 @@ body.english-mode {
   <button class="menu-btn" onclick="openMenu()">☰</button>
 
   <div class="header-inner">
-    <h1 class="site-title">مَكْتَبَةُ اليَاسِرِيّ الإِلِكْتْرُونِيّةُ الرَّقْمِيّة</h1>
-    <p class="site-subtitle">مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها</p>
+    <h1>مَكْتَبَةُ اليَاسِرِيّ الإِلِكْتْرُونِيّةُ الرَّقْمِيّة</h1>
+    <p>مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها</p>
   </div>
 </header>
 
 <div class="sidebar" id="sidebar">
   <button class="close-btn" onclick="closeMenu()">✕</button>
 
-  <h2 class="menu-title">القائمة</h2>
+  <h2>القائمة</h2>
 
-  <a href="#" class="menu-home">الصفحة الرئيسية</a>
-  <a href="#" class="menu-sections">أقسام المكتبة</a>
-  <a href="#" class="menu-books">الكتب</a>
-  <a href="#" class="menu-contact">التواصل</a>
-  <a href="#" class="menu-login">تسجيل الدخول</a>
+  <a href="#">الصفحة الرئيسية</a>
+  <a href="#">أقسام المكتبة</a>
+  <a href="#">الكتب</a>
+  <a href="#">التواصل</a>
+  <a href="#">تسجيل الدخول</a>
 </div>
 
 <main>
-  <h2 class="section-title books-title">الكتب المتاحة</h2>
+  <h2 class="section-title">الكتب المتاحة</h2>
 
   <div class="book-grid">
     <div class="book-card">
       <div class="book-icon">📖</div>
-      <h2 class="book-name">الحدائق للاندلسي</h2>
-      <p class="book-desc">كتاب إسلامي متاح للقراءة والتحميل.</p>
+      <h2>الحدائق للاندلسي</h2>
+      <p>كتاب إسلامي متاح للقراءة والتحميل.</p>
 
-      <button class="btn read read-btn" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank')">
+      <button class="btn read" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank')">
         قراءة الكتاب
       </button>
 
-      <button class="btn download download-btn" onclick="downloadBook()">
+      <button class="btn download" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank')">
         تحميل الكتاب
       </button>
     </div>
@@ -316,8 +248,10 @@ body.english-mode {
 </main>
 
 <footer>
-  <p class="footer-text">مكتبة الياسري الإلكترونية الرقمية</p>
+  <p>مكتبة الياسري الإلكترونية الرقمية</p>
 </footer>
+
+<button id="top-btn" onclick="window.scrollTo(0,0)">⬆️</button>
 
 <script>
 function openMenu() {
@@ -327,16 +261,7 @@ function openMenu() {
 function closeMenu() {
   document.getElementById("sidebar").classList.remove("open");
 }
+</script>
 
-function downloadBook() {
-  window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank');
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  var themeBtn = document.getElementById("theme-btn");
-  var langBtn = document.getElementById("lang-btn");
-  var topBtn = document.getElementById("top-btn");
-
-  themeBtn.addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
-    themeBtn.textConte
+</body>
+</html>

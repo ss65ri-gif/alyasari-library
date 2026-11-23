@@ -27,6 +27,7 @@ header {
   background: linear-gradient(180deg, #06251c, #0b3d2e);
   border-bottom: 6px solid #c9a227;
   transition: background 0.4s;
+  position: relative;
 }
 
 .header-inner {
@@ -38,16 +39,24 @@ header {
   background: rgba(255,255,255,0.04);
 }
 
-.top-buttons {
+.menu-btn {
   position: absolute;
   top: 20px;
   right: 20px;
-  display: flex;
-  gap: 10px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  font-size: 22px;
+  cursor: pointer;
+  background: #c9a227;
+  color: #06251c;
 }
 
-.menu-btn,
 .theme-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
   width: 48px;
   height: 48px;
   border: none;
@@ -237,10 +246,8 @@ body.night footer {
 <div class="top-gold"></div>
 
 <header class="reveal">
-  <div class="top-buttons">
-    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
-    <button class="menu-btn" onclick="openMenu()">☰</button>
-  </div>
+  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
+  <button class="menu-btn" onclick="openMenu()">☰</button>
 
   <div class="header-inner">
     <h1>مكتبة الياسري الإلكترونية</h1>
@@ -333,10 +340,4 @@ var observer = new IntersectionObserver(function (entries) {
   threshold: 0.15
 });
 
-revealItems.forEach(function (item) {
-  observer.observe(item);
-});
-</script>
-
-</body>
-</html>
+revealItems.forEach(function (

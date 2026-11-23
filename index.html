@@ -191,6 +191,17 @@ footer {
   margin-top: 60px;
   border-top: 6px solid #c9a227;
 }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 
@@ -198,7 +209,7 @@ footer {
 
 <div class="top-gold"></div>
 
-<header>
+<header class="reveal">
   <button class="menu-btn" onclick="openMenu()">☰</button>
 
   <div class="header-inner">
@@ -220,10 +231,10 @@ footer {
 </div>
 
 <main>
-  <h2 class="section-title">الكتب المتاحة</h2>
+  <h2 class="section-title reveal">الكتب المتاحة</h2>
 
   <div class="book-grid">
-    <div class="book-card">
+    <div class="book-card reveal">
       <div class="book-icon">📖</div>
       <h2>الحدائق للاندلسي</h2>
       <p>كتاب إسلامي متاح للقراءة والتحميل.</p>
@@ -239,7 +250,7 @@ footer {
   </div>
 </main>
 
-<footer>
+<footer class="reveal">
   <p>مكتبة الياسري الإلكترونية</p>
 </footer>
 
@@ -251,6 +262,28 @@ function openMenu() {
 function closeMenu() {
   document.getElementById("sidebar").classList.remove("open");
 }
+
+var revealItems = document.querySelectorAll(".reveal");
+var delay = 0;
+
+revealItems.forEach(function (item) {
+  item.style.transitionDelay = delay + "s";
+  delay = delay + 0.25;
+});
+
+var observer = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, {
+  threshold: 0.15
+});
+
+revealItems.forEach(function (item) {
+  observer.observe(item);
+});
 </script>
 
 </body>

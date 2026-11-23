@@ -4,265 +4,234 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مكتبة الياسري الإلكترونية الرقمية</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-
-<style> 
 <style>
-#site-tools {
-  position: fixed !important;
-  top: 12px !important;
-  left: 12px !important;
-  z-index: 99999 !important;
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 12px !important;
-  width: auto !important;
-  height: auto !important;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-#site-tools button {
-  flex: 0 0 auto !important;
-  display: inline-block !important;
-  width: 46px !important;
-  height: 46px !important;
-  margin: 0 !important;
-  border: none !important;
-  border-radius: 50% !important;
-  background: #1f4e3d !important;
-  color: #ffffff !important;
-  font-size: 20px !important;
-  cursor: pointer !important;
-}
-</style>  
 body {
-  margin: 0;
-  font-family: 'Cairo', sans-serif;
-  background: #06251c;
-  color: #fff;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 15% 15%, rgba(201,162,39,0.12) 0, transparent 45%),
-    radial-gradient(circle at 85% 85%, rgba(201,162,39,0.10) 0, transparent 45%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.top-gold {
-  height: 10px;
-  background: linear-gradient(90deg, #c9a227, #f6d365, #c9a227);
+  font-family: "Tahoma", "Arial", sans-serif;
+  background: #f4f1ea;
+  color: #222;
+  min-height: 100vh;
 }
 
 header {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 45px 20px;
-  background: linear-gradient(180deg, #06251c, #0b3d2e);
-  border-bottom: 6px solid #c9a227;
-}
-
-.header-inner {
-  max-width: 900px;
-  margin: auto;
-  border: 3px solid #c9a227;
-  border-radius: 20px;
+  background: #1f4e3d;
+  color: #fff;
   padding: 25px 15px;
-  background: rgba(255,255,255,0.04);
-}
-
-.menu-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #c9a227;
-  border: none;
-  color: #06251c;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  font-size: 24px;
-  cursor: pointer;
+  text-align: center;
 }
 
 header h1 {
-  font-family: 'Aref Ruqaa', serif;
-  font-size: 34px;
-  color: #c9a227;
-  margin: 0;
-  line-height: 1.8;
+  font-size: 26px;
+  margin-bottom: 8px;
 }
 
 header p {
-  margin: 12px 0 0;
-  color: #e8e2c9;
-  font-size: 16px;
+  font-size: 15px;
+  opacity: .9;
+}
+
+#tools {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+}
+
+#tools button {
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: #14532d;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 main {
-  position: relative;
-  z-index: 1;
-  max-width: 1000px;
-  margin: 45px auto;
+  max-width: 900px;
+  margin: 25px auto;
   padding: 0 15px;
 }
 
-.section-title {
-  font-family: 'Aref Ruqaa', serif;
-  font-size: 30px;
-  color: #c9a227;
-  text-align: center;
-  margin-bottom: 30px;
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
 }
 
-.book-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-.book-card {
-  background: #0b3d2e;
-  border: 3px solid #c9a227;
-  border-radius: 20px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-}
-
-.book-icon {
-  font-size: 65px;
-  margin-bottom: 15px;
-}
-
-.book-card h2 {
-  font-family: 'Aref Ruqaa', serif;
-  color: #c9a227;
-  margin: 0 0 12px;
-}
-
-.book-card p {
-  color: #e8e2c9;
-  margin: 0 0 22px;
-}
-
-.btn {
-  display: block;
-  width: 100%;
-  padding: 14px;
+.card h2 {
+  color: #1f4e3d;
   margin-bottom: 12px;
-  border: none;
-  border-radius: 12px;
-  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 12px;
   font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
 }
 
-.read {
-  background: #c9a227;
-  color: #06251c;
-}
-
-.download {
-  background: transparent;
-  color: #c9a227;
-  border: 2px solid #c9a227;
-}
-
-/* القائمة الجانبية الخفيفة */
-.sidebar {
-  position: fixed;
-  top: 0;
-  right: -320px;
-  width: 300px;
-  height: 100%;
-  background: #e9f5ef;
-  color: #06251c;
-  padding: 25px 20px;
-  transition: right 0.3s;
-  z-index: 200;
-  border-left: 5px solid #c9a227;
-}
-
-.sidebar.open {
-  right: 0;
-}
-
-.sidebar h2 {
-  font-family: 'Aref Ruqaa', serif;
-  color: #0b3d2e;
-  margin: 0 0 20px;
-}
-
-.sidebar a {
-  display: block;
-  color: #06251c;
-  text-decoration: none;
-  padding: 14px;
-  margin-bottom: 10px;
-  border-radius: 12px;
-  background: #ffffff;
-  border: 1px solid #c9a227;
-}
-
-.sidebar a:hover {
-  background: #c9a227;
-  color: #06251c;
-}
-
-.close-btn {
-  background: transparent;
+button.main-btn {
+  width: 100%;
+  padding: 13px;
   border: none;
-  color: #06251c;
-  font-size: 26px;
+  border-radius: 10px;
+  background: #1f4e3d;
+  color: #fff;
+  font-size: 17px;
   cursor: pointer;
-  margin-bottom: 15px;
+}
+
+.book {
+  display: block;
+  background: #eef6f1;
+  color: #1f4e3d;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 footer {
-  position: relative;
-  z-index: 1;
-  background: #06251c;
-  color: #e8e2c9;
   text-align: center;
-  padding: 25px;
-  margin-top: 60px;
-  border-top: 6px solid #c9a227;
+  padding: 20px;
+  color: #666;
+  font-size: 14px;
 }
-</style>
-</head>
-<style>
+
 .reveal {
   opacity: 0;
-  transform: translateY(35px) scale(0.97);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(30px);
+  transition: all .8s ease;
 }
 
 .reveal.show {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
+}
+
+body.dark {
+  background: #101418;
+  color: #e8e8e8;
+}
+
+body.dark .card {
+  background: #171c21;
+  color: #e8e8e8;
+}
+
+body.dark .book {
+  background: #1d2a24;
+  color: #cfe8dc;
+}
+
+body.english {
+  direction: ltr;
+  text-align: left;
 }
 </style>
+</head>
+<body>
+
+<div id="tools">
+  <button id="themeBtn">🌙</button>
+  <button id="topBtn">⬆️</button>
+  <button id="langBtn">🌐</button>
+</div>
+
+<header>
+  <h1 id="siteTitle">مكتبة الياسري الإلكترونية الرقمية</h1>
+  <p id="siteDesc">مكتبة إلكترونية لقراءة الكتب والرسائل العلمية</p>
+</header>
+
+<main>
+  <section class="card reveal" id="loginCard">
+    <h2 id="loginTitle">الدخول بالبريد الإلكتروني</h2>
+    <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني">
+    <button class="main-btn" id="loginBtn">دخول</button>
+    <p id="loginMsg" style="margin-top:10px;"></p>
+  </section>
+
+  <section class="card reveal" id="booksCard" style="display:none;">
+    <h2 id="booksTitle">الكتب المتوفرة</h2>
+
+    <a class="book" href="https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf" target="_blank">
+      📖 كتاب الحدائق
+    </a>
+
+  </section>
+</main>
+
+<footer>
+  مكتبة الياسري الإلكترونية الرقمية
+</footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  var items = document.querySelectorAll(
-    "header, main, section, .book-card, .card, .book, footer"
-  );
 
-  items.forEach(function (item, index) {
-    item.classList.add("reveal");
-    item.style.transitionDelay = (index * 0.12) + "s";
+  var loginBtn = document.getElementById("loginBtn");
+  var emailInput = document.getElementById("email");
+  var loginMsg = document.getElementById("loginMsg");
+  var booksCard = document.getElementById("booksCard");
+
+  loginBtn.addEventListener("click", function () {
+    var email = emailInput.value.trim();
+
+    if (email === "") {
+      loginMsg.textContent = "الرجاء إدخال البريد الإلكتروني";
+      loginMsg.style.color = "red";
+      return;
+    }
+
+    loginMsg.textContent = "تم الدخول بنجاح";
+    loginMsg.style.color = "green";
+    booksCard.style.display = "block";
   });
 
+  document.getElementById("themeBtn").addEventListener("click", function () {
+    document.body.classList.toggle("dark");
+    this.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+  });
+
+  document.getElementById("topBtn").addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  document.getElementById("langBtn").addEventListener("click", function () {
+    document.body.classList.toggle("english");
+
+    var english = document.body.classList.contains("english");
+
+    document.getElementById("siteTitle").textContent = english
+      ? "Al-Yasari Digital Electronic Library"
+      : "مكتبة الياسري الإلكترونية الرقمية";
+
+    document.getElementById("siteDesc").textContent = english
+      ? "An electronic library for reading books and academic theses"
+      : "مكتبة إلكترونية لقراءة الكتب والرسائل العلمية";
+
+    document.getElementById("loginTitle").textContent = english
+      ? "Sign in with email"
+      : "الدخول بالبريد الإلكتروني";
+
+    document.getElementById("booksTitle").textContent = english
+      ? "Available Books"
+      : "الكتب المتوفرة";
+
+    emailInput.placeholder = english ? "Enter your email" : "أدخل بريدك الإلكتروني";
+    loginBtn.textContent = english ? "Sign in" : "دخول";
+  });
+
+  var items = document.querySelectorAll(".reveal");
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
@@ -271,153 +240,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }, { threshold: 0.15 });
 
-  items.forEach(function (item) {
+  items.forEach(function (item, index) {
+    item.style.transitionDelay = (index * 0.2) + "s";
     observer.observe(item);
   });
+
 });
-</script>
-<style>
-#site-tools {
-  position: fixed;
-  top: 12px;
-left: 12px;
-flex-direction: row;
-align-items: center;
-  z-index: 9999;
-  display: flex;
-  gap: 8px;
-}
-
-#site-tools button {
-  width: 46px;
-  height: 46px;
-  border: none;
-  border-radius: 50%;
-  background: #1f4e3d;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 3px 10px rgba(0,0,0,.25);
-}
-
-#site-tools button:hover {
-  background: #2e6b52;
-}
-
-body.dark-mode {
-  background: #101418 !important;
-  color: #e8e8e8 !important;
-}
-
-body.dark-mode header,
-body.dark-mode main,
-body.dark-mode section,
-body.dark-mode footer,
-body.dark-mode .card,
-body.dark-mode .book-card,
-body.dark-mode .book {
-  background: #171c21 !important;
-  color: #e8e8e8 !important;
-}
-
-body.english-mode {
-  direction: ltr !important;
-  text-align: left !important;
-}
-</style>
-
-<div id="site-tools">
-  <button id="theme-btn" title="الوضع الليلي / النهاري">🌙</button>
-  <button id="top-btn" title="العودة للأعلى">⬆️</button>
-  <button id="lang-btn" title="العربية / English">🌐</button>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  var themeBtn = document.getElementById("theme-btn");
-  var topBtn = document.getElementById("top-btn");
-  var langBtn = document.getElementById("lang-btn");
-
-  themeBtn.addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
-    themeBtn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-  });
-
-  topBtn.addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  langBtn.addEventListener("click", function () {
-    document.body.classList.toggle("english-mode");
-    langBtn.textContent = document.body.classList.contains("english-mode") ? "ع" : "🌐";
-  });
-});
-</script>
-  <body>
-
-<div class="top-gold"></div>
-
-<header>
-  <button class="menu-btn" onclick="openMenu()">☰</button>
-
-  <div class="header-inner">
-    <h1>مَكْتَبَةُ اليَاسِرِيّ الإِلِكْتْرُونِيّةُ الرَّقْمِيّة</h1>
-    <p>مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها</p>
-  </div>
-</header>
-
-<div class="sidebar" id="sidebar">
-  <button class="close-btn" onclick="closeMenu()">✕</button>
-
-  <h2>القائمة</h2>
-
-  <a href="#">الصفحة الرئيسية</a>
-  <a href="#">أقسام المكتبة</a>
-  <a href="#">الكتب</a>
-  <a href="#">التواصل</a>
-  <a href="#">تسجيل الدخول</a>
-</div>
-
-<main>
-
-  <h2 class="section-title">الكتب المتاحة</h2>
-
-  <div class="book-grid">
-
-    <div class="book-card">
-      <div class="book-icon">📖</div>
-      <h2>الحدائق للاندلسي</h2>
-      <p>كتاب إسلامي متاح للقراءة والتحميل.</p>
-
-      <button class="btn read" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank')">
-        قراءة الكتاب
-      </button>
-
-      <button class="btn download" onclick="downloadBook()">
-        تحميل الكتاب
-      </button>
-    </div>
-
-  </div>
-
-</main>
-
-<footer>
-  <p>مكتبة الياسري الإلكترونية الرقمية</p>
-</footer>
-
-<script>
-function openMenu() {
-  document.getElementById("sidebar").classList.add("open");
-}
-
-function closeMenu() {
-  document.getElementById("sidebar").classList.remove("open");
-}
-
-function downloadBook() {
-  window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank');
-}
 </script>
 
 </body>

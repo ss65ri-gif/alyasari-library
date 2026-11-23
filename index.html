@@ -247,7 +247,82 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
-<body>
+<style>
+#site-tools {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 9999;
+  display: flex;
+  gap: 8px;
+}
+
+#site-tools button {
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: #1f4e3d;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,.25);
+}
+
+#site-tools button:hover {
+  background: #2e6b52;
+}
+
+body.dark-mode {
+  background: #101418 !important;
+  color: #e8e8e8 !important;
+}
+
+body.dark-mode header,
+body.dark-mode main,
+body.dark-mode section,
+body.dark-mode footer,
+body.dark-mode .card,
+body.dark-mode .book-card,
+body.dark-mode .book {
+  background: #171c21 !important;
+  color: #e8e8e8 !important;
+}
+
+body.english-mode {
+  direction: ltr !important;
+  text-align: left !important;
+}
+</style>
+
+<div id="site-tools">
+  <button id="theme-btn" title="الوضع الليلي / النهاري">🌙</button>
+  <button id="top-btn" title="العودة للأعلى">⬆️</button>
+  <button id="lang-btn" title="العربية / English">🌐</button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var themeBtn = document.getElementById("theme-btn");
+  var topBtn = document.getElementById("top-btn");
+  var langBtn = document.getElementById("lang-btn");
+
+  themeBtn.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+    themeBtn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+  });
+
+  topBtn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  langBtn.addEventListener("click", function () {
+    document.body.classList.toggle("english-mode");
+    langBtn.textContent = document.body.classList.contains("english-mode") ? "ع" : "🌐";
+  });
+});
+</script>
+  <body>
 
 <div class="top-gold"></div>
 

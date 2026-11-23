@@ -13,7 +13,6 @@ body {
   font-family: 'Cairo', sans-serif;
   background: #06251c;
   color: #fff;
-  transition: background 0.4s, color 0.4s;
 }
 
 .top-gold {
@@ -37,7 +36,6 @@ body {
   cursor: pointer;
   background: #c9a227;
   color: #06251c;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.35);
 }
 
 header {
@@ -45,7 +43,6 @@ header {
   padding: 45px 20px;
   background: linear-gradient(180deg, #06251c, #0b3d2e);
   border-bottom: 6px solid #c9a227;
-  transition: background 0.4s;
   position: relative;
 }
 
@@ -112,8 +109,6 @@ main {
   border-radius: 20px;
   padding: 30px;
   text-align: center;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-  transition: background 0.4s;
 }
 
 .book-icon {
@@ -203,7 +198,6 @@ main {
   font-size: 22px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
 }
 
 footer {
@@ -213,131 +207,6 @@ footer {
   padding: 25px;
   margin-top: 60px;
   border-top: 6px solid #c9a227;
-  transition: background 0.4s;
 }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-body.night {
-  background: rgba(10, 20, 16, 0.35);
-  color: #f5f5f5;
-}
-
-body.night header {
-  background: rgba(11, 61, 46, 0.45);
-}
-
-body.night .header-inner {
-  background: rgba(255,255,255,0.08);
-}
-
-body.night .book-card {
-  background: rgba(11, 61, 46, 0.35);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-}
-
-body.night footer {
-  background: rgba(11, 61, 46, 0.45);
-}
-</style>
-</head>
-
-<body>
-
-<div class="top-gold"></div>
-
-<div class="fixed-top">
-  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
-</div>
-
-<header class="reveal">
-  <button class="menu-btn" onclick="openMenu()">☰</button>
-
-  <div class="header-inner">
-    <h1>مكتبة الياسري الإلكترونية</h1>
-    <p>مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها</p>
-  </div>
-</header>
-
-<div class="sidebar" id="sidebar">
-  <button class="close-btn" onclick="closeMenu()">✕</button>
-
-  <h2>القائمة</h2>
-
-  <a href="#">الصفحة الرئيسية</a>
-  <a href="#">أقسام المكتبة</a>
-  <a href="#">الكتب</a>
-  <a href="#">التواصل</a>
-  <a href="#">تسجيل الدخول</a>
-</div>
-
-<main>
-  <h2 class="section-title reveal">الكتب المتاحة</h2>
-
-  <div class="book-grid">
-    <div class="book-card reveal">
-      <div class="book-icon">📖</div>
-      <h2>الحدائق للاندلسي</h2>
-      <p>كتاب إسلامي متاح للقراءة والتحميل.</p>
-
-      <button class="btn read" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank')">
-        قراءة الكتاب
-      </button>
-
-      <button class="btn download" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank')">
-        تحميل الكتاب
-      </button>
-    </div>
-  </div>
-</main>
-
-<footer class="reveal">
-  <p>مكتبة الياسري الإلكترونية</p>
-</footer>
-
-<script>
-function openMenu() {
-  document.getElementById("sidebar").classList.add("open");
-}
-
-function closeMenu() {
-  document.getElementById("sidebar").classList.remove("open");
-}
-
-function toggleTheme() {
-  var body = document.body;
-  var button = document.getElementById("themeBtn");
-
-  body.classList.toggle("night");
-
-  if (body.classList.contains("night")) {
-    button.textContent = "☀️";
-    localStorage.setItem("theme", "night");
-  } else {
-    button.textContent = "🌙";
-    localStorage.setItem("theme", "day");
-  }
-}
-
-var savedTheme = localStorage.getItem("theme");
-
-if (savedTheme === "night") {
-  document.body.classList.add("night");
-  document.getElementById("themeBtn").textContent = "☀️";
-}
-
-var revealItems = document.querySelectorAll(".reveal");
-var delay = 0;
-
-revealItems.forEach(function (item) {
-  item.style.transitionDelay = delay + "s";
-  delay = del
+.re

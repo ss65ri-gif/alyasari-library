@@ -226,7 +226,8 @@ footer {
   border-radius: 50%;
   background: #1f4e3d;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
   box-shadow: 0 3px 10px rgba(0,0,0,.25);
 }
@@ -241,12 +242,33 @@ footer {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+
+body.dark-mode {
+  background: #101418 !important;
+  color: #e8e8e8 !important;
+}
+
+body.dark-mode header,
+body.dark-mode main,
+body.dark-mode .book-card,
+body.dark-mode .sidebar,
+body.dark-mode footer {
+  background: #171c21 !important;
+  color: #e8e8e8 !important;
+}
+
+body.english-mode {
+  direction: ltr !important;
+  text-align: left !important;
+}
 </style>
 </head>
 
 <body>
 
 <div id="site-tools">
+  <button id="theme-btn" title="الوضع الليلي / النهاري">🌙</button>
+  <button id="lang-btn" title="العربية / English">ع</button>
   <button id="top-btn" title="العودة للأعلى">⬆️</button>
 </div>
 
@@ -256,37 +278,37 @@ footer {
   <button class="menu-btn" onclick="openMenu()">☰</button>
 
   <div class="header-inner">
-    <h1>مَكْتَبَةُ اليَاسِرِيّ الإِلِكْتْرُونِيّةُ الرَّقْمِيّة</h1>
-    <p>مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها</p>
+    <h1 class="site-title">مَكْتَبَةُ اليَاسِرِيّ الإِلِكْتْرُونِيّةُ الرَّقْمِيّة</h1>
+    <p class="site-subtitle">مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها</p>
   </div>
 </header>
 
 <div class="sidebar" id="sidebar">
   <button class="close-btn" onclick="closeMenu()">✕</button>
 
-  <h2>القائمة</h2>
+  <h2 class="menu-title">القائمة</h2>
 
-  <a href="#">الصفحة الرئيسية</a>
-  <a href="#">أقسام المكتبة</a>
-  <a href="#">الكتب</a>
-  <a href="#">التواصل</a>
-  <a href="#">تسجيل الدخول</a>
+  <a href="#" class="menu-home">الصفحة الرئيسية</a>
+  <a href="#" class="menu-sections">أقسام المكتبة</a>
+  <a href="#" class="menu-books">الكتب</a>
+  <a href="#" class="menu-contact">التواصل</a>
+  <a href="#" class="menu-login">تسجيل الدخول</a>
 </div>
 
 <main>
-  <h2 class="section-title">الكتب المتاحة</h2>
+  <h2 class="section-title books-title">الكتب المتاحة</h2>
 
   <div class="book-grid">
     <div class="book-card">
       <div class="book-icon">📖</div>
-      <h2>الحدائق للاندلسي</h2>
-      <p>كتاب إسلامي متاح للقراءة والتحميل.</p>
+      <h2 class="book-name">الحدائق للاندلسي</h2>
+      <p class="book-desc">كتاب إسلامي متاح للقراءة والتحميل.</p>
 
-      <button class="btn read" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank')">
+      <button class="btn read read-btn" onclick="window.open('https://dwktxozijdycemdnywet.supabase.co/storage/v1/object/public/books/hadaiq.pdf','_blank')">
         قراءة الكتاب
       </button>
 
-      <button class="btn download" onclick="downloadBook()">
+      <button class="btn download download-btn" onclick="downloadBook()">
         تحميل الكتاب
       </button>
     </div>
@@ -294,7 +316,7 @@ footer {
 </main>
 
 <footer>
-  <p>مكتبة الياسري الإلكترونية الرقمية</p>
+  <p class="footer-text">مكتبة الياسري الإلكترونية الرقمية</p>
 </footer>
 
 <script>
@@ -311,28 +333,10 @@ function downloadBook() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  var themeBtn = document.getElementById("theme-btn");
+  var langBtn = document.getElementById("lang-btn");
   var topBtn = document.getElementById("top-btn");
 
-  topBtn.addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  var items = document.querySelectorAll("header, main, .book-card, footer");
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("reveal", "show");
-      }
-    });
-  }, { threshold: 0.15 });
-
-  items.forEach(function (item, index) {
-    item.classList.add("reveal");
-    item.style.transitionDelay = (index * 0.15) + "s";
-    observer.observe(item);
-  });
-});
-</script>
-
-</body>
-</html>
+  themeBtn.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+    themeBtn.textConte

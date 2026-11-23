@@ -241,34 +241,13 @@ footer {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-
-body.dark-mode {
-  background: #101418 !important;
-  color: #e8e8e8 !important;
-}
-
-body.dark-mode header,
-body.dark-mode main,
-body.dark-mode .book-card,
-body.dark-mode .sidebar,
-body.dark-mode footer {
-  background: #171c21 !important;
-  color: #e8e8e8 !important;
-}
-
-body.english-mode {
-  direction: ltr !important;
-  text-align: left !important;
-}
 </style>
 </head>
 
 <body>
 
 <div id="site-tools">
-  <button id="theme-btn" title="الوضع الليلي / النهاري">🌙</button>
   <button id="top-btn" title="العودة للأعلى">⬆️</button>
-  <button id="lang-btn" title="العربية / English">🌐</button>
 </div>
 
 <div class="top-gold"></div>
@@ -332,22 +311,10 @@ function downloadBook() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  var themeBtn = document.getElementById("theme-btn");
   var topBtn = document.getElementById("top-btn");
-  var langBtn = document.getElementById("lang-btn");
-
-  themeBtn.addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
-    themeBtn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-  });
 
   topBtn.addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  langBtn.addEventListener("click", function () {
-    document.body.classList.toggle("english-mode");
-    langBtn.textContent = document.body.classList.contains("english-mode") ? "ع" : "🌐";
   });
 
   var items = document.querySelectorAll("header, main, .book-card, footer");

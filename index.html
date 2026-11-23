@@ -56,6 +56,8 @@ header {
   top: 18px;
   left: 18px;
   display: flex;
+  flex-direction: row;
+  direction: ltr;
   gap: 8px;
   z-index: 300;
 }
@@ -316,13 +318,58 @@ if (savedTheme === "night") {
 
 function toggleLanguage() {
   var html = document.documentElement;
+  var isArabic = html.getAttribute("lang") === "ar";
 
-  if (html.getAttribute("lang") === "ar") {
+  if (isArabic) {
     html.setAttribute("lang", "en");
     html.setAttribute("dir", "ltr");
+
+    document.querySelector(".header-inner h1").textContent = "Al-Yasiri Electronic Library";
+    document.querySelector(".header-inner p").textContent = "An Islamic digital library for reading books";
+
+    document.querySelector(".section-title").textContent = "Available Books";
+
+    document.querySelector(".book-card h2").textContent = "Al-Hadaeq by Al-Andalusi";
+    document.querySelector(".book-card p").textContent = "An Islamic book available for reading and download.";
+
+    document.querySelector(".btn.read").textContent = "Read Book";
+    document.querySelector(".btn.download").textContent = "Download Book";
+
+    document.querySelector(".sidebar h2").textContent = "Menu";
+
+    var links = document.querySelectorAll(".sidebar a");
+    links[0].textContent = "Home";
+    links[1].textContent = "Library Sections";
+    links[2].textContent = "Books";
+    links[3].textContent = "Contact";
+    links[4].textContent = "Login";
+
+    document.querySelector("footer p").textContent = "Al-Yasiri Electronic Library";
   } else {
     html.setAttribute("lang", "ar");
     html.setAttribute("dir", "rtl");
+
+    document.querySelector(".header-inner h1").textContent = "مكتبة الياسري الإلكترونية";
+    document.querySelector(".header-inner p").textContent = "مكتبة إسلامية رقمية لقراءة الكتب والاستفادة منها";
+
+    document.querySelector(".section-title").textContent = "الكتب المتاحة";
+
+    document.querySelector(".book-card h2").textContent = "الحدائق للاندلسي";
+    document.querySelector(".book-card p").textContent = "كتاب إسلامي متاح للقراءة والتحميل.";
+
+    document.querySelector(".btn.read").textContent = "قراءة الكتاب";
+    document.querySelector(".btn.download").textContent = "تحميل الكتاب";
+
+    document.querySelector(".sidebar h2").textContent = "القائمة";
+
+    var links = document.querySelectorAll(".sidebar a");
+    links[0].textContent = "الصفحة الرئيسية";
+    links[1].textContent = "أقسام المكتبة";
+    links[2].textContent = "الكتب";
+    links[3].textContent = "التواصل";
+    links[4].textContent = "تسجيل الدخول";
+
+    document.querySelector("footer p").textContent = "مكتبة الياسري الإلكترونية";
   }
 }
 </script>

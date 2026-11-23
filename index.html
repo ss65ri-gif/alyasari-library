@@ -340,4 +340,10 @@ var observer = new IntersectionObserver(function (entries) {
   threshold: 0.15
 });
 
-revealItems.forEach(function (
+revealItems.forEach(function (item) {
+  observer.observe(item);
+});
+</script>
+
+</body>
+</html>
